@@ -1,0 +1,27 @@
+package com.ontfs.paramBean.requestBean;
+
+public class UploadFileReqBean {
+
+	public Object FilePath;
+	public Object FileDesc;
+	public Object FileSize;
+	public Object TimeExpired;
+	public Object CopyNum;
+	public Object StorageType;
+	public boolean FirstPdp;
+	public Object EncryptPassword;
+	public UploadFileReqBean(Object filePath2, Object fileDesc, Object fileSize, Object timeExpired, Object copyNum,
+			Object storageType, boolean firstPdp, Object encryptPassword) {
+		super();
+		FilePath = filePath2;
+		FileDesc = fileDesc;
+		FileSize = fileSize;
+		TimeExpired = timeExpired;
+		CopyNum = copyNum;
+		StorageType = storageType;
+		FirstPdp = firstPdp;
+		EncryptPassword = encryptPassword;
+	}
+	
+	
+}
