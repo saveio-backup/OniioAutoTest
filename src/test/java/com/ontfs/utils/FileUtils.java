@@ -588,7 +588,9 @@ public class FileUtils extends TestBase {
 			List<String> uploadFilesMD5 = new ArrayList<String>();
 			List<String> decryFilesMD5 = new ArrayList<String>();
 
-			for (int i = 0; i < decryFiles.length; i++) {
+			int length =decryFiles.length<uploadFiles.length?decryFiles.length:uploadFiles.length;
+
+			for (int i = 0; i < length; i++) {
 				try {
 					uploadFilesMD5.add(MD5Utils.getFileMD5String(uploadFiles[i]));
 					decryFilesMD5.add(MD5Utils.getFileMD5String(decryFiles[i]));
