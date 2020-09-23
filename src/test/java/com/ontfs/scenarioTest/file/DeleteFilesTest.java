@@ -19,7 +19,7 @@ public class DeleteFilesTest extends TestBase {
 	@Test
 	public void testDeleteFilesWithOneInvalidFiles() {
 		// upload file
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 
 		//delete files
 		String[] array = new String[] { fileHash, "qweqweqwe" };
@@ -35,7 +35,7 @@ public class DeleteFilesTest extends TestBase {
 
 	@Test(enabled = false)
 	public void testDeleteTheSameFileTwice() {
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 		// first delete
 		String[] fileHashArray = new String[] { fileHash };
 		Object json = JSON.toJSON(fileHashArray);

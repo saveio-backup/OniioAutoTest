@@ -24,7 +24,7 @@ public class RenewFileTest extends TestBase {
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
 		// upload space file
-		String fileHash = FileUtils.getFileHashByUploadFile(0, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(0,1, pwd);
 		JSONObject object2 = FileUtils.renewFile(clientUrl, fileHash, 3600);
 		Assert.assertEquals(CommonUtils.getError(object2), ConstantUtil.INTERNAL_ERROR);
 
@@ -34,7 +34,7 @@ public class RenewFileTest extends TestBase {
 	public void testRenewFileThatUploadFailed() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// upload failed file
-		String fileHash=FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash=FileUtils.getFileHashByUploadFile(1,1, pwd);
 		JSONObject object = FileUtils.renewFile(clientUrl, fileHash, 3600);
 		
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);

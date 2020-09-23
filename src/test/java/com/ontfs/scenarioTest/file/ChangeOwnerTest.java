@@ -1,15 +1,11 @@
 package com.ontfs.scenarioTest.file;
 
+import com.ontfs.utils.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ontfs.paramBean.responseBean.Task;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.SpaceUtils;
-import com.ontfs.utils.TaskUtils;
-import com.ontfs.utils.TestBase;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -30,7 +26,7 @@ public class ChangeOwnerTest extends TestBase {
 		Assert.assertEquals(CommonUtils.getError(space), ConstantUtil.SUCCESS_CODE);
 
 		// upload space file
-		String fileHash = FileUtils.getFileHashByUploadFile(0, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(0, 1,pwd);
 
 		// change space file owner
 		JSONObject object = FileUtils.changeFileOwner(clientUrl, fileHash, wallet2);
@@ -40,7 +36,7 @@ public class ChangeOwnerTest extends TestBase {
 	@Test
 	public void testChangeOwnerWithOriginalOwner() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		String fileHash=FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash=FileUtils.getFileHashByUploadFile(1,1, pwd);
 		
 		JSONObject object=FileUtils.changeFileOwner(clientUrl, fileHash, wallet);
 		Assert.assertEquals(CommonUtils.getDesc(object), ConstantUtil.SUCCESS);
@@ -55,7 +51,7 @@ public class ChangeOwnerTest extends TestBase {
 		Object fileName=getFilesName()[0][0];
 		String filePath=uploadFilePath+"/"+fileName;
 //		File file=new File(uploadFilePath+"/"+getFilesName()[0][0]);
-		JSONObject object=FileUtils.uploadFile(clientUrl, filePath,fileName, pwd, expiredTime, copyNum+12, true, 1);
+		JSONObject object=FileUtils.uploadFile(clientUrl, filePath,fileName, pwd, expiredTime, copyNum+12, true, 1,1);
 		String taskId = ((JSONObject) object.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
 		// get task
 		Task task = (TaskUtils.getUploadTaskInfoByTaskId(clientUrl, taskId).getJSONObject(ConstantUtil.RESULT))
@@ -92,5 +88,9 @@ public class ChangeOwnerTest extends TestBase {
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+	}
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
 	}
 }

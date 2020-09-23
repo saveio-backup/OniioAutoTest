@@ -42,7 +42,7 @@ public class FileUtils extends TestBase {
      * @return
      */
     public static JSONObject uploadFile(String url, Object filePath, Object fileDesc, Object pwd, Object expiredTime,
-                                        Object copyNum, boolean firstPdp, Object storageType) {
+                                        Object copyNum, boolean firstPdp, Object storageType,Object proveLevel) {
 
 
 //		String filePath = "";
@@ -57,7 +57,7 @@ public class FileUtils extends TestBase {
 //		}
 
         UploadFileReqBean upload = new UploadFileReqBean(filePath, fileDesc, new File(filePath.toString()).length(), expiredTime, copyNum,
-                storageType, firstPdp, pwd);
+                storageType, firstPdp, pwd ,proveLevel);
 
         String bodyParams = CommonUtils.getBodyParams(ConstantUtil.UPLOAD_FILE, upload);
         log.info("uploadFile bodyParams is :" + bodyParams);
@@ -122,8 +122,8 @@ public class FileUtils extends TestBase {
      */
     public static Boolean verifyUploadSuccess(String url, String taskId) {
         JSONObject object = TaskUtils.getUploadTaskInfoByTaskId(url, taskId);
-        Assert.assertEquals(CommonUtils.getDesc(object), ConstantUtil.SUCCESS);
-        AssertJUnit.assertEquals(CommonUtils.getError(object).toString(), ConstantUtil.SUCCESS_CODE);
+
+        Assert.assertEquals(CommonUtils.getError(object).toString(), ConstantUtil.SUCCESS_CODE);
         int status = (Integer) ((JSONObject) (((JSONObject) object.get(ConstantUtil.RESULT))
                 .get(ConstantUtil.TASK_BASE_INFO))).get(ConstantUtil.STATUS);
         int progress = (Integer) ((JSONObject) (((JSONObject) object.get(ConstantUtil.RESULT))
@@ -346,7 +346,7 @@ public class FileUtils extends TestBase {
      *
      * @param clientUrl
      * @param ontoUrl
-     * @param serverAddress
+     * @param serverAddressArray
      * @param taskId
      * @param fileHash
      * @param maxPeerCnt
@@ -355,7 +355,7 @@ public class FileUtils extends TestBase {
      * @return
      */
 /*
-	public static boolean calculateDownloadCost(String clientUrl, String ontoUrl, String[] serverAddress, String taskId,
+	public static boolean calculateDownloadCost(String clientUrl, String ontoUrl, String[] serverAddressArray, String taskId,
 			String fileHash, int maxPeerCnt, float preRestMoney, String[] preNodeBlance, int copyNum) {
 
 		JSONObject readPledge = getFileReadPledge(clientUrl, fileHash);
@@ -708,7 +708,7 @@ public class FileUtils extends TestBase {
      *
      * @return
      */
-    public static String getFileHashByUploadFile(int storgeType, Object... pwd) {
+    public static String getFileHashByUploadFile(int storgeType, int proveLeve,Object... pwd) {
         // 上传文件
 
         Object[][] fileName = getFilesName();
@@ -720,7 +720,7 @@ public class FileUtils extends TestBase {
             password = "";
         }
         JSONObject obj = FileUtils.uploadFile(clientUrl, uploadFilePath + "/" + fileName[0][0], new Date().getTime() + "-" + fileName[0][0], password,
-                expiredTime, copyNum, true, storgeType);
+                expiredTime, copyNum, true, storgeType,proveLeve);
         Assert.assertEquals(CommonUtils.getDesc(obj), ConstantUtil.SUCCESS);
         AssertJUnit.assertEquals(CommonUtils.getError(obj), ConstantUtil.SUCCESS_CODE);
         String taskId = ((JSONObject) obj.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
@@ -735,9 +735,9 @@ public class FileUtils extends TestBase {
     public static String getDownloadFilePathAfterDownloadFileSuccessfully(Object... pwd) {
         String fileHash;
         if (pwd.length > 0) {
-            fileHash = FileUtils.getFileHashByUploadFile(1, pwd[0]);
+            fileHash = FileUtils.getFileHashByUploadFile(1,1, pwd[0]);
         } else {
-            fileHash = FileUtils.getFileHashByUploadFile(1);
+            fileHash = FileUtils.getFileHashByUploadFile(1,1);
         }
         String filePath = downloadFileDirectory + "/" + System.currentTimeMillis();
         JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, true, maxPeerCnt, filePath, "");

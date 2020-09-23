@@ -1,13 +1,10 @@
 package com.ontfs.bodyParams.challenge;
 
+import com.ontfs.utils.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.ChallengeUtils;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.TestBase;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
@@ -20,7 +17,7 @@ public class ChallengeTest extends TestBase {
 	@Test
 	public void testChallengeWithInvalidFileHash() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
-			JSONObject object = ChallengeUtils.challenge(clientUrl, invalidFileHash[i], serverAddress[1]);
+			JSONObject object = ChallengeUtils.challenge(clientUrl, invalidFileHash[i], serverAddressArray[1]);
 			if(i<invalidFileHash.length-1) {
 				Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 			} else {
@@ -31,7 +28,7 @@ public class ChallengeTest extends TestBase {
 	
 	@Test
 	public void testChallengeWithInvalidServerAddress() {
-		String fileHash=FileUtils.getFileHashByUploadFile(1,pwd);
+		String fileHash=FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidServerAddress.length; i++) {
 			JSONObject object=ChallengeUtils.challenge(clientUrl, fileHash, invalidServerAddress[i]);
 			if(i<invalidServerAddress.length-1) {
@@ -45,7 +42,7 @@ public class ChallengeTest extends TestBase {
 	@Test
 	public void testChallengeWithInvalidParams() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
-			for (int j = 0; j < serverAddress.length; j++) {
+			for (int j = 0; j < serverAddressArray.length; j++) {
 				JSONObject object = ChallengeUtils.challenge(clientUrl, invalidFileHash[i],invalidServerAddress[j]);
 				if(i<invalidFileHash.length-1 &&j<invalidServerAddress.length-1 ) {
 					Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
@@ -60,6 +57,7 @@ public class ChallengeTest extends TestBase {
 	public void beforeMethod() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+
 	}
 
 	@AfterClass
@@ -67,5 +65,8 @@ public class ChallengeTest extends TestBase {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
-
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
+	}
 }

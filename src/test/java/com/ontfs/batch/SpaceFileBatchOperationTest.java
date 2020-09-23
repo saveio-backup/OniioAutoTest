@@ -3,6 +3,7 @@ package com.ontfs.batch;
 import java.io.File;
 import java.util.Date;
 
+import com.ontfs.utils.*;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
@@ -11,12 +12,6 @@ import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.SpaceUtils;
-import com.ontfs.utils.TaskUtils;
-import com.ontfs.utils.TestBase;
 
 public class SpaceFileBatchOperationTest extends TestBase {
 	
@@ -46,7 +41,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 		String filePath = uploadFilePath + "/" + fileName;
 //		log.info("filePath is :" + filePath);
 //		File file = new File(filePath);
-		JSONObject object = FileUtils.uploadFile(clientUrl, filePath,  new Date().getTime() + "-" +fileName,pwd, expiredTime, copyNum, true, 0);
+		JSONObject object = FileUtils.uploadFile(clientUrl, filePath,  new Date().getTime() + "-" +fileName,pwd, expiredTime, copyNum, true, 0,1);
 		//
 		String taskId = ((JSONObject) object.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
 		// verify upload file success
@@ -96,6 +91,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+		SectorUtils.createSectorBeforeUploadFiles();
 	}
 
 	@AfterClass

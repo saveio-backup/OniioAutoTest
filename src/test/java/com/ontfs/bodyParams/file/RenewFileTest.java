@@ -1,13 +1,10 @@
 package com.ontfs.bodyParams.file;
 
+import com.ontfs.utils.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.SpaceUtils;
-import com.ontfs.utils.TestBase;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -24,7 +21,7 @@ public class RenewFileTest extends TestBase {
 
 	@Test
 	public void testRenewFileWithInvalidTime() {
-		String fileHash = FileUtils.getFileHashByUploadFile(1,pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidTime.length; i++) {
 			JSONObject object = FileUtils.renewFile(clientUrl, fileHash, invalidTime[i]);
 			if (i < invalidTime.length - 4) {
@@ -63,5 +60,8 @@ public class RenewFileTest extends TestBase {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
-
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
+	}
 }

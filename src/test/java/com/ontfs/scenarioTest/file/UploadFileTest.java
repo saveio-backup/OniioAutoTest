@@ -24,7 +24,7 @@ public class UploadFileTest extends TestBase {
 		// upload space File
 //		File file=new File(uploadFilePath+"/"+getFilesName()[0][0]);
 		Object fileName=getFilesName()[0][0];
-		JSONObject object=FileUtils.uploadFile(clientUrl, uploadFilePath+"/"+fileName, fileName.toString(), pwd, expiredTime, copyNum, true, 0);
+		JSONObject object=FileUtils.uploadFile(clientUrl, uploadFilePath+"/"+fileName, fileName.toString(), pwd, expiredTime, copyNum, true, 0,1);
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 	}
 	
@@ -38,7 +38,7 @@ public class UploadFileTest extends TestBase {
 		//upload file
 		
 //		File file=new File(uploadFilePath+"/soft.zip");
-		JSONObject uploadObject=FileUtils.uploadFile(clientUrl, uploadFilePath+"/soft.zip", "soft.zip", pwd, expiredTime, copyNum, true, 0);
+		JSONObject uploadObject=FileUtils.uploadFile(clientUrl, uploadFilePath+"/soft.zip", "soft.zip", pwd, expiredTime, copyNum, true, 0,1);
 		Assert.assertEquals(CommonUtils.getDesc(uploadObject), ConstantUtil.SUCCESS);
 		AssertJUnit.assertEquals(CommonUtils.getError(uploadObject).toString(), ConstantUtil.SUCCESS_CODE);
 		String taskId = ((JSONObject) uploadObject.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();

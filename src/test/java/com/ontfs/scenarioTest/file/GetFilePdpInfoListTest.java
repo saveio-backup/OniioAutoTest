@@ -22,7 +22,7 @@ public class GetFilePdpInfoListTest extends TestBase{
 	  
 	  log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 	  //upload file
-	  String fileHash=FileUtils.getFileHashByUploadFile(1, pwd);
+	  String fileHash=FileUtils.getFileHashByUploadFile(1,1, pwd);
 		
 		//delete file
 		String[] array=new String[] {fileHash};

@@ -15,7 +15,7 @@ public class GetFileInfoTEst extends TestBase {
 	@Test
 	public void testGetFileInfoAfterDeleteFile() {
 		// upload file
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 		// delete file
 		String[] array = new String[] { fileHash };
 		JSON json = (JSON) JSON.toJSON(array);

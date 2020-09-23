@@ -1,103 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" preserve-order="true">
 
-	<listeners>
-		<!--testng的XML配置文件中添加这些内容 -->
-		<listener class-name="org.uncommons.reportng.HTMLReporter" />
-		<listener
-			class-name="org.uncommons.reportng.JUnitXMLReporter" />
-		<!-- <listener class-name="Listeners.ExtentTestNGIReporterListener"></listener> -->
-	</listeners>
+    <listeners>
+        <!--testng的XML配置文件中添加这些内容 -->
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener
+                class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <!-- <listener class-name="Listeners.ExtentTestNGIReporterListener"></listener> -->
+    </listeners>
 
-	<test name="init">
-		<classes>
-			<class name="com.ontfs.InitTest"></class>
-		</classes>
-	</test>
+    <test name="init">
+        <classes>
+            <class name="com.ontfs.InitTest"></class>
+        </classes>
+    </test>
 
-	<test name="startsdk">
-		<classes>
-			<class name="com.ontfs.startsdk.StartSdkTest">
-			</class>
-		</classes>
-	</test>
-	<test name="batch" preserve-order="true">
-		<classes>
-			<class name="com.ontfs.batch.FileBatchOperationTest">
-				<methods>
-					<include name="testBatchUploadFiles" />
-					<include name="testBatchGetFileInfo" />
-					<include name="testBatchDownloadFiles" />
-					<include name="testBatchDecryptFiles" />
-					<include name="verifyDecryFileByMD5" />
-					<include name="testBatchReadPledge" />
-					<include name="testBatchRenewFiles" />
-					<include name="testChangeFileOwner" />
-				</methods>
-			</class>
-			<class name="com.ontfs.batch.SpaceFileBatchOperationTest">
-				<methods>
-					<include name="createSpace"></include>
-					<include name="getSpace"></include>
-					<include name="batchUploadSpaceFile"></include>
-					<include name="testBatchDownloadSpaceFiles"></include>
-					<include name="updateSpace"></include>
-					<include name="deleteSpace"></include>
-				</methods>
-			</class>
-			<class name="com.ontfs.batch.ChallengeBatchOperationTest">
-				<methods>
-					<include name="testBatchUploadFiles" />
-					<include name="testBatchChalleng" />
+    <test name="startsdk">
+        <classes>
+            <class name="com.ontfs.startsdk.StartSdkTest">
+            </class>
+        </classes>
+    </test>
+    <test name="batch" preserve-order="true">
+        <classes>
+            <class name="com.ontfs.batch.FileBatchOperationTest">
+                <methods>
+                    <include name="testBatchUploadFiles"/>
+                    <include name="testBatchGetFileInfo"/>
+                    <include name="testBatchDownloadFiles"/>
+                    <include name="testBatchDecryptFiles"/>
+                    <include name="verifyDecryFileByMD5"/>
+                    <include name="testBatchReadPledge"/>
+                    <include name="testBatchRenewFiles"/>
+                    <include name="testChangeFileOwner"/>
+                </methods>
+            </class>
+            <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
+                <methods>
+                    <include name="createSpace"></include>
+                    <include name="getSpace"></include>
+                    <include name="batchUploadSpaceFile"></include>
+                    <include name="testBatchDownloadSpaceFiles"></include>
+                    <include name="updateSpace"></include>
+                    <include name="deleteSpace"></include>
+                </methods>
+            </class>
+            <class name="com.ontfs.batch.ChallengeBatchOperationTest">
+                <methods>
+                    <include name="testBatchUploadFiles"/>
+                    <include name="testBatchChalleng"/>
 
-					<include name="testBatchJudge" />
+                    <include name="testBatchJudge"/>
 
-				</methods>
-			</class>
-		</classes>
-	</test>
-	<test name="bodyParams">
-		<classes>
-			<class name="com.ontfs.bodyParams.file.UploadFileTest"></class>
-			<class name="com.ontfs.bodyParams.file.DownloadFileTest"></class>
-			<class name="com.ontfs.bodyParams.file.DecryptFileTest"></class>
-			<class name="com.ontfs.bodyParams.file.RenewFileTest"></class>
-			<class name="com.ontfs.bodyParams.file.DeleteFilesTest"></class>
-			<class name="com.ontfs.bodyParams.file.GetFileInfoTest"></class>
-			<class name="com.ontfs.bodyParams.file.ChangeFileOwnerTest"></class>
-			<class name="com.ontfs.bodyParams.file.GetFileReadPledgeTest"></class>
-			<class name="com.ontfs.bodyParams.file.GetFilePdpInfoListTest"></class>
-			<class name="com.ontfs.bodyParams.challenge.ChallengeTest"></class>
-			<class name="com.ontfs.bodyParams.challenge.JudgeTest"></class>
-			<class
-				name="com.ontfs.bodyParams.challenge.GetChallengeListTest"></class>
-			<class name="com.ontfs.bodyParams.space.CreateSpaceTest"></class>
-			<class name="com.ontfs.bodyParams.space.UpdateSpaceTest"></class>
-			<class name="com.ontfs.bodyParams.node.GetNodeListTest"></class>
-			<class
-				name="com.ontfs.bodyParams.task.GetUploadTaskByTaskIdTest"></class>
-			<class
-				name="com.ontfs.bodyParams.task.GetDownloadTaskByTaskIdTest"></class>
-			<class name="com.ontfs.bodyParams.task.DeleteTaskTest"></class>
-		</classes>
-	</test>
-	<test name="scenarioTest">
-		<classes>
-			<class name="com.ontfs.scenarioTest.space.UpdateSpaceTest"></class>
-			<class name="com.ontfs.scenarioTest.space.CreateSpaceTest"></class>
-			<class name="com.ontfs.scenarioTest.space.GetSpaceTest"></class>
-			<class name="com.ontfs.scenarioTest.space.DeleteSpaceTest"></class>
-			<class name="com.ontfs.scenarioTest.file.UploadFileTest"></class>
-			<class name="com.ontfs.scenarioTest.file.DownloadFileTest"></class>
-			<class name="com.ontfs.scenarioTest.file.ChangeOwnerTest"></class>
-			<class name="com.ontfs.scenarioTest.file.RenewFileTest"></class>
-			<class name="com.ontfs.scenarioTest.file.DecryptFileTest"></class>
-			<class name="com.ontfs.scenarioTest.file.getReadPledgeTest"></class>
-			<class
-				name="com.ontfs.scenarioTest.file.GetFilePdpInfoListTest"></class>
-			<class name="com.ontfs.scenarioTest.file.DeleteFilesTest"></class>
-			<class name="com.ontfs.scenarioTest.challenge.ChallengeTest"></class>
-			<class name="com.ontfs.scenarioTest.challenge.JudgeTest"></class>
-		</classes>
-	</test>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="bodyParams">
+        <classes>
+            <class name="com.ontfs.bodyParams.file.UploadFileTest">
+
+            </class>
+            <class name="com.ontfs.bodyParams.file.DownloadFileTest"></class>
+            <class name="com.ontfs.bodyParams.file.DecryptFileTest"></class>
+            <class name="com.ontfs.bodyParams.file.RenewFileTest"></class>
+            <class name="com.ontfs.bodyParams.file.DeleteFilesTest"></class>
+            <class name="com.ontfs.bodyParams.file.GetFileInfoTest"></class>
+            <class name="com.ontfs.bodyParams.file.ChangeFileOwnerTest"></class>
+            <class name="com.ontfs.bodyParams.file.GetFileReadPledgeTest"></class>
+            <class name="com.ontfs.bodyParams.file.GetFilePdpInfoListTest"></class>
+            <class name="com.ontfs.bodyParams.challenge.ChallengeTest"></class>
+            <class name="com.ontfs.bodyParams.challenge.JudgeTest"></class>
+            <class
+                    name="com.ontfs.bodyParams.challenge.GetChallengeListTest"></class>
+            <class name="com.ontfs.bodyParams.space.CreateSpaceTest"></class>
+            <class name="com.ontfs.bodyParams.space.UpdateSpaceTest"></class>
+            <class name="com.ontfs.bodyParams.node.GetNodeListTest"></class>
+            <class
+                    name="com.ontfs.bodyParams.task.GetUploadTaskByTaskIdTest"></class>
+            <class
+                    name="com.ontfs.bodyParams.task.GetDownloadTaskByTaskIdTest"></class>
+            <class name="com.ontfs.bodyParams.task.DeleteTaskTest"></class>
+            <class name="com.ontfs.bodyParams.sector.CreateSectorTest"></class>
+            <class name="com.ontfs.bodyParams.sector.DeleteSectorTest"></class>
+        </classes>
+    </test>
+    <test name="scenarioTest">
+        <classes>
+            <class name="com.ontfs.scenarioTest.space.UpdateSpaceTest"></class>
+            <class name="com.ontfs.scenarioTest.space.CreateSpaceTest"></class>
+            <class name="com.ontfs.scenarioTest.space.GetSpaceTest"></class>
+            <class name="com.ontfs.scenarioTest.space.DeleteSpaceTest"></class>
+            <class name="com.ontfs.scenarioTest.file.UploadFileTest"></class>
+            <class name="com.ontfs.scenarioTest.file.DownloadFileTest"></class>
+            <class name="com.ontfs.scenarioTest.file.ChangeOwnerTest"></class>
+            <class name="com.ontfs.scenarioTest.file.RenewFileTest"></class>
+            <class name="com.ontfs.scenarioTest.file.DecryptFileTest"></class>
+            <class name="com.ontfs.scenarioTest.file.getReadPledgeTest"></class>
+            <class
+                    name="com.ontfs.scenarioTest.file.GetFilePdpInfoListTest"></class>
+            <class name="com.ontfs.scenarioTest.file.DeleteFilesTest"></class>
+            <class name="com.ontfs.scenarioTest.challenge.ChallengeTest"></class>
+            <class name="com.ontfs.scenarioTest.challenge.JudgeTest"></class>
+        </classes>
+    </test>
 </suite> <!-- Suite -->

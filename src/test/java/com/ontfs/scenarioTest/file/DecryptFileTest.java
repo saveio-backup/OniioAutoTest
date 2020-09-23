@@ -49,7 +49,7 @@ public class DecryptFileTest extends TestBase {
 		// upload file
 		String filePath= uploadFilePath + "/" + getFilesName()[0][0];
 		JSONObject obj = FileUtils.uploadFile(clientUrl, filePath, String.valueOf(System.currentTimeMillis()) , pwd,
-				expiredTime, copyNum, true, 1);
+				expiredTime, copyNum, true, 1,1);
 		Assert.assertEquals(CommonUtils.getDesc(obj), ConstantUtil.SUCCESS);
 		AssertJUnit.assertEquals(CommonUtils.getError(obj), ConstantUtil.SUCCESS_CODE);
 		String taskId = ((JSONObject) obj.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();

@@ -1,15 +1,10 @@
 package com.ontfs.batch;
 
+import com.ontfs.utils.*;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.TestBase;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.NodeUtils;
-import com.ontfs.utils.TaskUtils;
 
 import java.io.File;
 import java.util.Date;
@@ -31,7 +26,7 @@ public class FileBatchOperationTest extends TestBase {
 		String filePath = uploadFilePath + "/" + fileName;
 //		log.info("filePath is :" + filePath);
 //		File file = new File(filePath);
-		JSONObject obj = FileUtils.uploadFile(clientUrl,filePath,  new Date().getTime() + "-" + fileName,pwd, expiredTime, copyNum, true,1);
+		JSONObject obj = FileUtils.uploadFile(clientUrl,filePath,  new Date().getTime() + "-" + fileName,pwd, expiredTime, copyNum, true,1,1);
 		Assert.assertEquals(CommonUtils.getDesc(obj), ConstantUtil.SUCCESS);
 		AssertJUnit.assertEquals(CommonUtils.getError(obj).toString(), ConstantUtil.SUCCESS_CODE);
 		String taskId = ((JSONObject) obj.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
@@ -62,7 +57,7 @@ public class FileBatchOperationTest extends TestBase {
 		String outFile = downloadFileDirectory + "/" + str.split("@", 2)[1];
 		// get readpleder
 //		float preRestMoney = FileUtils.getPledgeCost(clientUrl,fileHash);
-//		String[] preNodeBalance = NodeUtils.getAllNodeBalance(ontoUrl, serverAddress);
+//		String[] preNodeBalance = NodeUtils.getAllNodeBalance(ontoUrl, serverAddressArray);
 //		log.info("文件Hash：" + fileHash + "  restmoney=" + preRestMoney);
 		// commit download task
 		JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, inorder, maxPeerCnt, outFile,"");
@@ -74,7 +69,7 @@ public class FileBatchOperationTest extends TestBase {
 		// verify download file success
 		Assert.assertTrue(FileUtils.verifyDownloadSuccess(clientUrl, taskId));
 		// Calculate download cost
-//		Assert.assertTrue(FileUtils.calculateDownloadCost(clientUrl, ontoUrl, serverAddress, taskId, fileHash,
+//		Assert.assertTrue(FileUtils.calculateDownloadCost(clientUrl, ontoUrl, serverAddressArray, taskId, fileHash,
 //				maxPeerCnt, preRestMoney, preNodeBalance, copyNum));
 		log.info("下载完成：" + fileHash);
 	}
@@ -194,7 +189,7 @@ public class FileBatchOperationTest extends TestBase {
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
-		
+		SectorUtils.createSectorBeforeUploadFiles();
 
 	}
 

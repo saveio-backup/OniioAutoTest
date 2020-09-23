@@ -18,7 +18,7 @@ public class DownloadFileTest extends TestBase{
  
 	@Test
 	public void testDownloadNonEncrptedFileWithEncrypt() {
-		String fileHash = FileUtils.getFileHashByUploadFile(1);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1);
 		JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, inorder, maxPeerCnt,
 				downloadFileDirectory + "/" + System.currentTimeMillis(), pwd);
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
@@ -33,7 +33,7 @@ public class DownloadFileTest extends TestBase{
 
 	@Test
 	public void testTwoDownloadWithSameFileName() {
-		String fileHash = FileUtils.getFileHashByUploadFile(1);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1);
 		//first download
 		String downloadPath=downloadFileDirectory + "/"+System.currentTimeMillis();
 		JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, inorder, maxPeerCnt,

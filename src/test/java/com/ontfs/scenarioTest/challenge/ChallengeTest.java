@@ -2,10 +2,12 @@ package com.ontfs.scenarioTest.challenge;
 
 import java.util.Map;
 
+import com.ontfs.utils.*;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,13 +15,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ontfs.paramBean.responseBean.Task;
-import com.ontfs.utils.ChallengeUtils;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.NodeUtils;
-import com.ontfs.utils.TaskUtils;
-import com.ontfs.utils.TestBase;
 
 public class ChallengeTest extends TestBase {
 
@@ -31,7 +26,7 @@ public class ChallengeTest extends TestBase {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// upload file
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 		// get pdp list
 		JSONObject object = FileUtils.getPdpinfoList(clientUrl, fileHash);
 		JSONArray pdpArray = object.getJSONArray(ConstantUtil.RESULT);
@@ -78,7 +73,7 @@ public class ChallengeTest extends TestBase {
 		String filePath=uploadFilePath + "/" +fileName;
 		
 //		File file = new File(uploadFilePath + "/" + getFilesName()[0][0]);
-		JSONObject uploadObject = FileUtils.uploadFile(clientUrl, filePath,fileName.toString(), pwd, expiredTime, 50, true, 1);
+		JSONObject uploadObject = FileUtils.uploadFile(clientUrl, filePath,fileName.toString(), pwd, expiredTime, 50, true, 1,1);
 		Assert.assertEquals(CommonUtils.getError(uploadObject), ConstantUtil.SUCCESS_CODE);
 
 		Assert.assertEquals(CommonUtils.getDesc(uploadObject), ConstantUtil.SUCCESS);
@@ -101,8 +96,8 @@ public class ChallengeTest extends TestBase {
 		Assert.assertEquals(progress, ConstantUtil.UPLOAD_ERROR);
 
 		// send challenge
-		for (int j = 0; j < serverAddress.length; j++) {
-			JSONObject object = ChallengeUtils.challenge(clientUrl, fileHash, serverAddress[j]);
+		for (int j = 0; j < serverAddressArray.length; j++) {
+			JSONObject object = ChallengeUtils.challenge(clientUrl, fileHash, serverAddressArray[j]);
 			Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 		}
 
@@ -111,7 +106,7 @@ public class ChallengeTest extends TestBase {
 	@Test
 	public void testSecondChallengeWhenFirstChallengeNoReply() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 
 		// getPdplist
 		JSONObject pdpObject = FileUtils.getPdpinfoList(clientUrl, fileHash);
@@ -139,7 +134,7 @@ public class ChallengeTest extends TestBase {
 	public void testDeleteFileWhenChallengeNoReply() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// Upload file success
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 
 		// getPdplist
 		JSONObject pdpObject = FileUtils.getPdpinfoList(clientUrl, fileHash);
@@ -188,6 +183,10 @@ public class ChallengeTest extends TestBase {
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+	}
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
 	}
 
 }

@@ -10,8 +10,9 @@ public class UploadFileReqBean {
 	public Object StorageType;
 	public boolean FirstPdp;
 	public Object EncryptPassword;
+	public Object ProveLevel;
 	public UploadFileReqBean(Object filePath2, Object fileDesc, Object fileSize, Object timeExpired, Object copyNum,
-			Object storageType, boolean firstPdp, Object encryptPassword) {
+			Object storageType, boolean firstPdp, Object encryptPassword,Object proveLevel) {
 		super();
 		FilePath = filePath2;
 		FileDesc = fileDesc;
@@ -21,6 +22,7 @@ public class UploadFileReqBean {
 		StorageType = storageType;
 		FirstPdp = firstPdp;
 		EncryptPassword = encryptPassword;
+		ProveLevel=proveLevel;
 	}
 	
 	

@@ -1,13 +1,11 @@
 package com.ontfs.bodyParams.file;
 
+import com.ontfs.utils.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.TestBase;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -34,7 +32,7 @@ public class GetFileInfoTest extends TestBase {
 	
 	@Test
 	public void testGetFileInfoAfterDeleteFile() {
-		String fileHash=FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash=FileUtils.getFileHashByUploadFile(1,1, pwd);
 		JSONObject object=FileUtils.getFileInfo(clientUrl, fileHash);
 		Assert.assertEquals(CommonUtils.getDesc(object), ConstantUtil.SUCCESS);
 		Assert.assertEquals(CommonUtils.getError(object).toString(), ConstantUtil.SUCCESS_CODE);
@@ -60,6 +58,10 @@ public class GetFileInfoTest extends TestBase {
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+	}
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
 	}
 
 }

@@ -4,8 +4,8 @@ import java.io.File;
 //import java.util.logging.Logger;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -18,7 +18,9 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class TestBase {
 	protected static Logger log = Logger.getRootLogger();
 	protected static String clientUrl = "";
-	protected static String[] serverAddress;
+	protected  static String[] serverUrlArray;
+
+	protected static String[] serverAddressArray;
 	protected static String ontoUrl = "";
 	protected static String p2pListenAddr = "";
 	protected static long p2pNetworkId = 0;
@@ -69,6 +71,8 @@ public class TestBase {
 		log.info("==================start init ...");
 		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
 		clientUrl = ConfigUtils.getConfig("client.url");
+		serverUrlArray=ConfigUtils.getConfig("server.url").split(",");
+
 		uploadFilePath = ConfigUtils.getConfig("uploadfile.path");
 		wallet = ConfigUtils.getConfig("client.address");
 		wallet2 = ConfigUtils.getConfig("client2.address");
@@ -80,7 +84,7 @@ public class TestBase {
 		downloadFileDirectory = ConfigUtils.getConfig("downloadFilePath");
 		decryFileDirectory = ConfigUtils.getConfig("decryFilePath");
 		volume = Integer.parseInt(ConfigUtils.getConfig("volume"));
-		serverAddress = ConfigUtils.getConfig("server.address").split(",");
+		serverAddressArray = ConfigUtils.getConfig("server.address").split(",");
 		ontoUrl = ConfigUtils.getConfig("onto.url");
 		pwd = ConfigUtils.getConfig("pwd");
 		defaultPerBlockSize = Integer.parseInt(ConfigUtils.getConfig("defaultPerBlockSize"));
@@ -227,7 +231,8 @@ public class TestBase {
 		// verify delete All files success
 		Assert.assertTrue(FileUtils.verifyfDeleteAllFilesSuccess(url));
 		
-		SpaceUtils.deleteSpace(url);
+		JSONObject deletespace=SpaceUtils.deleteSpace(url);
+
 		Assert.assertTrue(SpaceUtils.verifydeleteSpaceSuccess(url));
 	}
 

@@ -39,11 +39,11 @@ public class NodeTest extends TestBase {
 
 	@DataProvider(name = "getNodeAddrs", parallel = true)
 	public Object[][] getNodeAddrs() {
-		if (serverAddress.length != 0) {
-			int length = serverAddress.length;
+		if (serverAddressArray.length != 0) {
+			int length = serverAddressArray.length;
 			serverArray = new Object[length][1];
 			for (int i = 0; i < length; i++) {
-				String nodeAddr = serverAddress[i];
+				String nodeAddr = serverAddressArray[i];
 				serverArray[i][0] = nodeAddr;
 			}
 		}

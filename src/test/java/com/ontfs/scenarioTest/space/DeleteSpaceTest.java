@@ -36,7 +36,7 @@ public class DeleteSpaceTest extends TestBase {
 //		File file = new File(uploadFilePath + "/jdk-8u212-linux-x64.tar.gz");
 		JSONObject uploadFile = FileUtils.uploadFile(clientUrl, uploadFilePath + "/" +
 						"tcnative-1.dll","jdk-8u212-linux-x64.tar.gz" , pwd, expiredTime, copyNum, true,
-				0);
+				0,1);
 		String taskId = ((JSONObject) uploadFile.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
 		// verify upload file success
 		Assert.assertTrue(FileUtils.verifyUploadSuccess(clientUrl, taskId));

@@ -1,13 +1,10 @@
 package com.ontfs.scenarioTest.space;
 
+import com.ontfs.utils.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.SpaceUtils;
-import com.ontfs.utils.TestBase;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -35,7 +32,7 @@ public class UpdateSpaceTest extends TestBase {
 
 		// upload space file
 		JSONObject uploadFile = FileUtils.uploadFile(clientUrl, uploadFilePath + "/tcnative-1.dll",
-				"jdk-8u212-linux-x64.tar.gz", pwd, expiredTime, copyNum, true, 0);
+				"jdk-8u212-linux-x64.tar.gz", pwd, expiredTime, copyNum, true, 0,1);
 		String taskId = ((JSONObject) uploadFile.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
 		// verify upload file success
 		Assert.assertTrue(FileUtils.verifyUploadSuccess(clientUrl, taskId));
@@ -58,4 +55,9 @@ public class UpdateSpaceTest extends TestBase {
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
 
+	@BeforeClass
+	public void beforeClass(){
+		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		SectorUtils.createSectorBeforeUploadFiles();
+	}
 }

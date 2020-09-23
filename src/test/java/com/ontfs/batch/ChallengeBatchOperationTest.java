@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ontfs.utils.*;
 import org.apache.commons.collections.map.HashedMap;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
@@ -16,13 +17,6 @@ import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.ChallengeUtils;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.NodeUtils;
-import com.ontfs.utils.TaskUtils;
-import com.ontfs.utils.TestBase;
 
 public class ChallengeBatchOperationTest extends TestBase {
 
@@ -49,7 +43,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 				+ "and current fileName is :" + fileName);
 		String filePath = uploadFilePath + "/" + fileName;
 //		File file = new File(filePath);
-		JSONObject obj = FileUtils.uploadFile(clientUrl,filePath,  new Date().getTime() + "-" +fileName ,pwd, expiredTime, copyNum, true,1);
+		JSONObject obj = FileUtils.uploadFile(clientUrl,filePath,  new Date().getTime() + "-" +fileName ,pwd, expiredTime, copyNum, true,1,1);
 		Assert.assertEquals(CommonUtils.getDesc(obj), ConstantUtil.SUCCESS);
 		Assert.assertEquals(CommonUtils.getError(obj).toString(), ConstantUtil.SUCCESS_CODE);
 		String taskId = ((JSONObject) obj.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
@@ -276,23 +270,6 @@ public class ChallengeBatchOperationTest extends TestBase {
 		return challengeAddress;
 	}
 
-//	private Map<String, BigDecimal> initChallenge() {
-//		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//
-////		preChallengeClientBalance = NodeUtils.getAllNodeBalance(ontoUrl, new String[] { wallet })[0];
-//
-//		log.info("init()后preChallengeClientBalance=" + preChallengeClientBalance);
-//		JSONArray nodeArray = NodeUtils.getNodeList(clientUrl,50).getJSONArray(ConstantUtil.RESULT);
-//		for (int i = 0; i < nodeArray.size(); i++) {
-//			JSONObject node = nodeArray.getJSONObject(i);
-//			nodeChallengeReward.put(node.getString(ConstantUtil.NODE_ADDR), new BigDecimal(0));
-//			preChallengeNodeProfit.put(node.getString(ConstantUtil.NODE_ADDR), node.getDouble(ConstantUtil.PROFIT));
-//
-//		}
-////		log.info("init()的nodeReward=" + nodeChallengeReward.toString());
-//		log.info("init()的preNodeProfit=" + preChallengeNodeProfit.toString());
-//		return nodeChallengeReward;
-//	}
 
 
 
@@ -305,6 +282,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 	@BeforeClass
 	public static void BeforeClass() {
 		deleteFileAndTaskAndSpace(clientUrl);
+		SectorUtils.createSectorBeforeUploadFiles();
 
 	}
 

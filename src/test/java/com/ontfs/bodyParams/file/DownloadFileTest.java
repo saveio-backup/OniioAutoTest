@@ -1,18 +1,15 @@
 package com.ontfs.bodyParams.file;
 
+import com.ontfs.utils.*;
 import org.junit.AfterClass;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ontfs.paramBean.responseBean.Task;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.TaskUtils;
-import com.ontfs.utils.TestBase;
 
 public class DownloadFileTest extends TestBase {
 
@@ -34,7 +31,7 @@ public class DownloadFileTest extends TestBase {
 	@Test
 	public void testDownloadFileWithInvalidOutPath() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		String fileHash = FileUtils.getFileHashByUploadFile(1,pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidOutPath.length; i++) {
 			JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, true, maxPeerCnt, invalidOutPath[i], pwd);
 			verifyDownloadFileErrorCode(object);
@@ -45,7 +42,7 @@ public class DownloadFileTest extends TestBase {
 	@Test
 	public void testDownloadFileWithInvalidPwd() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		String fileHash = FileUtils.getFileHashByUploadFile(1,pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidDecryptPwd.length; i++) {
 			JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, true, maxPeerCnt, downloadFileDirectory,
 					invalidDecryptPwd[i].toString());
@@ -94,5 +91,9 @@ public class DownloadFileTest extends TestBase {
 	public static void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+	}
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
 	}
 }

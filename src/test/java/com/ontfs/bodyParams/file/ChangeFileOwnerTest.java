@@ -1,14 +1,11 @@
 package com.ontfs.bodyParams.file;
 
+import com.ontfs.utils.*;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ontfs.utils.CommonUtils;
-import com.ontfs.utils.ConstantUtil;
-import com.ontfs.utils.FileUtils;
-import com.ontfs.utils.SpaceUtils;
-import com.ontfs.utils.TestBase;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
@@ -32,7 +29,7 @@ public class ChangeFileOwnerTest extends TestBase {
 
 	@Test
 	public void testChangeFileOwnerWithInvalidWallet() {
-		String fileHash = FileUtils.getFileHashByUploadFile(1,pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidWallet.length; i++) {
 			JSONObject object = FileUtils.changeFileOwner(clientUrl, fileHash, invalidWallet[i]);
 			if (i == invalidWallet.length - 1) {
@@ -69,6 +66,10 @@ public class ChangeFileOwnerTest extends TestBase {
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+	}
+	@BeforeClass
+	public void beforeClass(){
+		SectorUtils.createSectorBeforeUploadFiles();
 	}
 
 }

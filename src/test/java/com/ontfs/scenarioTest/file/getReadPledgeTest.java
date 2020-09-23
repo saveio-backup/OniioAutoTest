@@ -19,7 +19,7 @@ public class getReadPledgeTest extends TestBase {
 	public void testGetPledgeWithNoDownloadFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// Upload file
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1, pwd);
 		//get pledge
 		JSONObject object = FileUtils.getFileReadPledge(clientUrl, fileHash);
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
@@ -30,7 +30,7 @@ public class getReadPledgeTest extends TestBase {
 	public void testGetPledgeAfterDeleteFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// Upload file
-		String fileHash = FileUtils.getFileHashByUploadFile(1, pwd);
+		String fileHash = FileUtils.getFileHashByUploadFile(1,1, pwd);
 		
 		//download file
 		JSONObject object=FileUtils.downloadFile(clientUrl, fileHash, true, maxPeerCnt, downloadFileDirectory+"/"+System.currentTimeMillis(), pwd);
