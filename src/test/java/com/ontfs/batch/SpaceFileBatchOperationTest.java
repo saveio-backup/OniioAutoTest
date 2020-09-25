@@ -49,7 +49,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 		log.info("空间文件上传完成：" + taskId);
 	}
 
-	@Test(dataProvider = "getdownloadFilesStr")
+	@Test(dataProvider = "getdownloadFilesStr",groups = "normal")
 	public void testBatchDownloadSpaceFiles(String str) {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
@@ -68,7 +68,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 		Assert.assertTrue(FileUtils.verifyDownloadSuccess(clientUrl, taskId));
 		log.info("空间文件下载完成：" + fileHash);
 	}
-	@Test
+	@Test(groups = "normal")
 	public void deleteSpace() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		FileUtils.deleteAllFiles(clientUrl);
@@ -87,14 +87,14 @@ public class SpaceFileBatchOperationTest extends TestBase {
 	} 
 	
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 		SectorUtils.createSectorBeforeUploadFiles();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public static void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);

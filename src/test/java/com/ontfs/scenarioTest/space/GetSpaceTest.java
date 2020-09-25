@@ -18,7 +18,7 @@ public class GetSpaceTest extends TestBase{
 	 JSONObject object=SpaceUtils.getSpaceInfo(clientUrl);
 	 Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
   }
-  @BeforeMethod
+  @BeforeMethod(alwaysRun = true)
   public void beforeMethod() {
 	  log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);

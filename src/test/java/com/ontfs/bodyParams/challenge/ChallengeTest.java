@@ -14,7 +14,7 @@ public class ChallengeTest extends TestBase {
 	private Object[] invalidFileHash = ConstantUtil.invalidFileHash;
 	private Object[] invalidServerAddress=ConstantUtil.invalidWallet;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testChallengeWithInvalidFileHash() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			JSONObject object = ChallengeUtils.challenge(clientUrl, invalidFileHash[i], serverAddressArray[1]);
@@ -26,7 +26,7 @@ public class ChallengeTest extends TestBase {
 		}
 	}
 	
-	@Test
+	@Test(groups = "unusual")
 	public void testChallengeWithInvalidServerAddress() {
 		String fileHash=FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidServerAddress.length; i++) {
@@ -39,7 +39,7 @@ public class ChallengeTest extends TestBase {
 		}
 	}
 	
-	@Test
+	@Test(groups = "unusual")
 	public void testChallengeWithInvalidParams() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			for (int j = 0; j < serverAddressArray.length; j++) {
@@ -53,19 +53,19 @@ public class ChallengeTest extends TestBase {
 		}
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
 		SectorUtils.createSectorBeforeUploadFiles();
 	}

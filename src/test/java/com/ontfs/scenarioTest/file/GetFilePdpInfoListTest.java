@@ -37,13 +37,13 @@ public class GetFilePdpInfoListTest extends TestBase{
 	  
 	  
   }
-  @BeforeMethod
+  @BeforeMethod(alwaysRun = true)
   public void beforeMethod() {
 	  log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
   }
 
-  @AfterClass
+  @AfterClass(alwaysRun = true)
   public void afterClass() {
 	  log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);

@@ -36,7 +36,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 
 	public static String preJudgeClientBalance;
 
-	@Test(dataProvider = "getFilesName")
+	@Test(dataProvider = "getFilesName",groups = "normal")
 	public void testBatchUploadFiles(String fileName) {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
@@ -53,7 +53,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 		log.info("上传完成：" + taskId);
 	}
 
-	@Test(dataProvider = "getChallengeAddress")
+	@Test(dataProvider = "getChallengeAddress",groups = "normal")
 	public void testBatchChalleng(String address) {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
@@ -70,7 +70,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups = "normal")
 	public void testChallengeClientCost() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// verify client cost
@@ -100,7 +100,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "normal")
 	public void testChallengeServerProfit() {
 		// verify server cost
 
@@ -131,7 +131,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 
 	}
 
-	@Test(dataProvider = "getJudgeAddress")
+	@Test(dataProvider = "getJudgeAddress",groups = "normal")
 	public void testBatchJudge(String addStr) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		if (!"no data".equals(addStr)) {
@@ -147,7 +147,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "normal")
 	public void testJudgeClientrCost() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// verify client cost
@@ -174,7 +174,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "normal")
 	public void testJudegeServerCost() {
 		// verify server Cost
 		// verify client cost
@@ -273,13 +273,13 @@ public class ChallengeBatchOperationTest extends TestBase {
 
 
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public static void afterClass() {
 		deleteFileAndTaskAndSpace(clientUrl);
 
 	}
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public static void BeforeClass() {
 		deleteFileAndTaskAndSpace(clientUrl);
 		SectorUtils.createSectorBeforeUploadFiles();

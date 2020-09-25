@@ -15,7 +15,7 @@
         </classes>
     </test>
 
-    <test name="startsdk">
+ <test name="startsdk">
         <classes>
             <class name="com.ontfs.startsdk.StartSdkTest">
             </class>
@@ -26,6 +26,7 @@
             <class name="com.ontfs.batch.FileBatchOperationTest">
                 <methods>
                     <include name="testBatchUploadFiles"/>
+                    <include name="testSectorFileOrder"/>
                     <include name="testBatchGetFileInfo"/>
                     <include name="testBatchDownloadFiles"/>
                     <include name="testBatchDecryptFiles"/>
@@ -35,7 +36,7 @@
                     <include name="testChangeFileOwner"/>
                 </methods>
             </class>
-            <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
+        <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
                 <methods>
                     <include name="createSpace"></include>
                     <include name="getSpace"></include>
@@ -58,7 +59,7 @@
     </test>
     <test name="bodyParams">
         <classes>
-            <class name="com.ontfs.bodyParams.file.UploadFileTest">
+         <class name="com.ontfs.bodyParams.file.UploadFileTest">
 
             </class>
             <class name="com.ontfs.bodyParams.file.DownloadFileTest"></class>
@@ -81,11 +82,11 @@
             <class
                     name="com.ontfs.bodyParams.task.GetDownloadTaskByTaskIdTest"></class>
             <class name="com.ontfs.bodyParams.task.DeleteTaskTest"></class>
-            <class name="com.ontfs.bodyParams.sector.CreateSectorTest"></class>
+            <class name="com.ontfs.bodyParams.sector.CreateSectorTest"></class>-->
             <class name="com.ontfs.bodyParams.sector.DeleteSectorTest"></class>
         </classes>
     </test>
-    <test name="scenarioTest">
+  <test name="scenarioTest">
         <classes>
             <class name="com.ontfs.scenarioTest.space.UpdateSpaceTest"></class>
             <class name="com.ontfs.scenarioTest.space.CreateSpaceTest"></class>

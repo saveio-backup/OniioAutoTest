@@ -43,7 +43,7 @@ public class ConstantUtil extends TestBase {
     public static final String CREATE_SECTOR = "createsector";
     public static final String DELETE_SECTOR = "deletesector";
     public static final String GET_SECTOR_INFO = "getsectorinfo";
-    public static final String GET_LOCAL_SECTOR = "getlocalsector";
+    public static final String GET_LOCAL_SECTOR = "getlocalsectorinfo";
     public static final String GET_SECTOR_INFOS_FOR_NODE = "getsectorinfosfornode";
 
 

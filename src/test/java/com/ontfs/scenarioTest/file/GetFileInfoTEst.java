@@ -23,11 +23,11 @@ public class GetFileInfoTEst extends TestBase {
 
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod() {
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 	}
 

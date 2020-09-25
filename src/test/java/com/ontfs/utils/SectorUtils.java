@@ -136,8 +136,7 @@ public class SectorUtils extends TestBase {
                 for (int j = 0; j < sectorArray.size(); j++) {
                     //delete sector
                     JSONObject delete = deleteSector(serverUrl[i], sectorArray.getJSONObject(j).getString("SectorID"));
-
-                    Assert.assertEquals(CommonUtils.getError(delete), ConstantUtil.SUCCESS_CODE);
+//                    Assert.assertEquals(CommonUtils.getError(delete), ConstantUtil.SUCCESS_CODE);
                 }
             }
 
@@ -146,38 +145,39 @@ public class SectorUtils extends TestBase {
 
     /**
      * Verify that the sector contains the specified file
+     *
      * @param serverUrl
      * @param sectorId
      * @param fileHash
      * @return
      */
-    public static boolean verifySectorFile(String serverUrl, String sectorId,String fileHash) {
+    public static boolean verifySectorFile(String serverUrl, String sectorId, String fileHash) {
 
         //get sector
-        JSONObject sectorObject=getSectorInfo(serverUrl,sectorId);
+        JSONObject sectorObject = getSectorInfo(serverUrl, sectorId);
         Assert.assertEquals(CommonUtils.getError(sectorObject), ConstantUtil.SUCCESS_CODE);
-        JSONObject sectorInfo=CommonUtils.getResult(sectorObject);
-        if(sectorInfo.getJSONArray("FileList").contains(fileHash)){
+        JSONObject sectorInfo = CommonUtils.getResult(sectorObject);
+        if (sectorInfo.getJSONArray("FileList").contains(fileHash)) {
             return true;
         }
-        return  false;
+        return false;
 
     }
 
-    public static boolean verifyNodeContainFile(String serverUrl, String serverAddress, String fileHash,int proveLevel) {
+    public static boolean verifyNodeContainFile(String serverUrl, String serverAddress, String fileHash, int proveLevel) {
 
         //get sector
-        JSONObject sectorObject=getSectorInfosForNode(serverUrl,serverAddress);
+        JSONObject sectorObject = getSectorInfosForNode(serverUrl, serverAddress);
         Assert.assertEquals(CommonUtils.getError(sectorObject), ConstantUtil.SUCCESS_CODE);
 
         JSONObject sectors = getSectorInfosForNode(serverUrl, serverAddress);
         Assert.assertEquals(CommonUtils.getError(sectors), ConstantUtil.SUCCESS_CODE);
         int count = CommonUtils.getResult(sectors).getIntValue("SectorCount");
-        if (count>0) {
+        if (count > 0) {
             JSONArray sectorArray = CommonUtils.getResult(sectors).getJSONArray("SectorInfos");
             for (int i = 0; i < sectorArray.size(); i++) {
                 JSONObject sectorInfo = sectorArray.getJSONObject(i);
-                if(sectorInfo.getJSONArray("FileList")!=null) {
+                if (sectorInfo.getJSONArray("FileList") != null) {
                     if (sectorInfo.getJSONArray("FileList").contains(fileHash) || sectorInfo.getIntValue("ProveLevel") == proveLevel) {
                         return true;
                     }
@@ -185,6 +185,44 @@ public class SectorUtils extends TestBase {
             }
 
         }
-        return  false;
+        return false;
+    }
+
+    /**
+     * Verify getsector and getlocalsection Are the files in the same order
+     *
+     * @param serverUrlArray
+     * @param serverAddressArray
+     * @return
+     */
+    public static boolean verifySectorFileOrder(String[] serverUrlArray, String[] serverAddressArray) {
+        //getSectorsForNode
+        for (int i = 0; i < serverAddressArray.length; i++) {
+            JSONObject sectorForNode = getSectorInfosForNode(serverUrlArray[i], serverAddressArray[i]);
+            Assert.assertEquals(CommonUtils.getError(sectorForNode), ConstantUtil.SUCCESS_CODE);
+            JSONArray sectorInfo = CommonUtils.getResult(sectorForNode).getJSONArray("SectorInfos");
+            int sectorCount = CommonUtils.getResult(sectorForNode).getIntValue("SectorCount");
+            for (int j = 0; j < sectorCount; j++) {
+                String sectorId = sectorInfo.getJSONObject(j).getString("SectorID");
+                //get sector info
+                JSONObject getSectorObject = getSectorInfo(serverUrlArray[i], sectorId);
+                Assert.assertEquals(CommonUtils.getError(getSectorObject), ConstantUtil.SUCCESS_CODE);
+                JSONArray fileList1 = CommonUtils.getResult(getSectorObject).getJSONArray("FileList");
+
+                //getlocalSector
+                JSONObject getLocalSectorObject = getLocalSector(serverUrlArray[i], sectorId);
+                Assert.assertEquals(CommonUtils.getError(getLocalSectorObject), ConstantUtil.SUCCESS_CODE);
+                JSONArray fileLsit2 = CommonUtils.getResult(getLocalSectorObject).getJSONArray("FileList");
+
+                for (int k = 0; k < fileList1.size(); k++) {
+                  String filehash1=  fileList1.getString(k);
+                  String filhash2=fileLsit2.getJSONObject(k).getString("FileHash");
+                    if ( !filehash1.equals(filhash2) ) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

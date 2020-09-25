@@ -273,7 +273,7 @@ public class UploadFileTest extends TestBase {
     }
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public static void beforeMethod() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         deleteFileAndTaskAndSpace(clientUrl);

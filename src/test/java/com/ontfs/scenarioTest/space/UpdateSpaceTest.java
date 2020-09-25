@@ -43,7 +43,7 @@ public class UpdateSpaceTest extends TestBase {
 
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
@@ -55,7 +55,7 @@ public class UpdateSpaceTest extends TestBase {
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		SectorUtils.createSectorBeforeUploadFiles();

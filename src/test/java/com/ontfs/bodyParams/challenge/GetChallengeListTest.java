@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 public class GetChallengeListTest extends TestBase {
 	private Object[] invalidFileHash = ConstantUtil.invalidFileHash_getChallengeList;
 
-	@Test(enabled = false)
+	@Test(enabled = false,groups = "unusual")
 	public void testGetChallengeWithInvalidFileHash() {
 
 		for (int i = 0; i < invalidFileHash.length; i++) {
@@ -28,19 +28,19 @@ public class GetChallengeListTest extends TestBase {
 		}
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
 		SectorUtils.createSectorBeforeUploadFiles();
 	}

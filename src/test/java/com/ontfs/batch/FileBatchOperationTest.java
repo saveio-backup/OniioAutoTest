@@ -18,7 +18,7 @@ import org.testng.annotations.DataProvider;
 
 public class FileBatchOperationTest extends TestBase {
 
-	@Test(dataProvider = "getFilesName")
+	@Test(dataProvider = "getFilesName",groups = "normal")
 	public void testBatchUploadFiles(String fileName) {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
@@ -36,10 +36,17 @@ public class FileBatchOperationTest extends TestBase {
 		// Calculate upload cost
 //		Assert.assertTrue(FileUtils.CalculateUploadCost(clientUrl, taskId, expiredTime, pdpInterval, copyNum));
 
+
 		log.info("上传完成：" + taskId);
 	}
 
-	@Test(dataProvider = "getdownloadFilesStr")
+	@Test (groups = "normal")
+	public void testSectorFileOrder() {
+		//Verify file order in sector
+		Assert.assertTrue(SectorUtils.verifySectorFileOrder(serverUrlArray, serverAddressArray));
+	}
+
+	@Test(dataProvider = "getdownloadFilesStr",groups = "normal")
 	public void testBatchGetFileInfo(String str) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash = str.split("@", 2)[0];
@@ -49,7 +56,7 @@ public class FileBatchOperationTest extends TestBase {
 		
 		Assert.assertNotEquals(CommonUtils.getResult(object), null);
 	}
-	@Test(dataProvider = "getdownloadFilesStr")
+	@Test(dataProvider = "getdownloadFilesStr",groups = "normal")
 	public void testBatchDownloadFiles(String str) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
 				+ " downloadFiles,and current fileName is :" + str);
@@ -74,7 +81,7 @@ public class FileBatchOperationTest extends TestBase {
 		log.info("下载完成：" + fileHash);
 	}
 
-	@Test(dataProvider = "getdownloadFilesStr")
+	@Test(dataProvider = "getdownloadFilesStr",groups = "normal")
 	public void testBatchReadPledge(String str) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash = str.split("@", 2)[0];
@@ -86,7 +93,7 @@ public class FileBatchOperationTest extends TestBase {
 
 	}
 
-	@Test(dataProvider = "getDecryptFile")
+	@Test(dataProvider = "getDecryptFile",groups = "normal")
 	public void testBatchDecryptFiles(String fileName) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 
@@ -98,7 +105,7 @@ public class FileBatchOperationTest extends TestBase {
 		AssertJUnit.assertEquals(CommonUtils.getError(object).toString(), ConstantUtil.SUCCESS_CODE);
 	}
 
-	@Test
+	@Test(groups = "normal")
 	public void verifyDecryFileByMD5() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 
@@ -126,7 +133,7 @@ public class FileBatchOperationTest extends TestBase {
 		}
 	}
 
-	@Test(dataProvider = "getdownloadFilesStr")
+	@Test(dataProvider = "getdownloadFilesStr",groups = "normal")
 	public void testBatchRenewFiles(String str) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash = str.split("@", 2)[0];
@@ -140,7 +147,7 @@ public class FileBatchOperationTest extends TestBase {
 
 	}
 
-	@Test(dataProvider = "getdownloadFilesStr")
+	@Test(dataProvider = "getdownloadFilesStr",groups = "normal")
 	public void testBatchChangeFileOwner(String str) {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 
@@ -185,7 +192,7 @@ public class FileBatchOperationTest extends TestBase {
 
 	}
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
@@ -193,7 +200,7 @@ public class FileBatchOperationTest extends TestBase {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public static void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);

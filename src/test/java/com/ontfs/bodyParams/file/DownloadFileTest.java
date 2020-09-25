@@ -81,7 +81,7 @@ public class DownloadFileTest extends TestBase {
 
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public static void beforeMethod() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
@@ -92,7 +92,7 @@ public class DownloadFileTest extends TestBase {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
 		SectorUtils.createSectorBeforeUploadFiles();
 	}

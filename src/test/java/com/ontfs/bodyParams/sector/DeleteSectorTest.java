@@ -55,20 +55,16 @@ public class DeleteSectorTest extends TestBase {
 
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public static void afterTest() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         deleteFileAndTaskAndSpace(clientUrl);
     }
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public static  void beforeTest(){
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         deleteFileAndTaskAndSpace(clientUrl);
     }
-    @BeforeClass
-    public static void BeforeClass(){
-        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        deleteFileAndTaskAndSpace(clientUrl);
-    }
+
 }

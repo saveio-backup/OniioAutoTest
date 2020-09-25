@@ -15,7 +15,7 @@ public class ChangeFileOwnerTest extends TestBase {
 	private Object[] invalidFileHash = ConstantUtil.invalidFileHash;
 	private Object[] invalidWallet = ConstantUtil.invalidWallet;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testChangeFileOwnerWithInvalidFileHash() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			JSONObject object = FileUtils.changeFileOwner(clientUrl, invalidFileHash[i], wallet);
@@ -27,7 +27,7 @@ public class ChangeFileOwnerTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "unusual")
 	public void testChangeFileOwnerWithInvalidWallet() {
 		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidWallet.length; i++) {
@@ -40,7 +40,7 @@ public class ChangeFileOwnerTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "unusual")
 	public void testChangeFileOwnerWithInvalidParams() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			for (int j = 0; j < invalidWallet.length; j++) {
@@ -56,18 +56,18 @@ public class ChangeFileOwnerTest extends TestBase {
 	
 	
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 	}
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
 		SectorUtils.createSectorBeforeUploadFiles();
 	}
