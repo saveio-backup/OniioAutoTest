@@ -65,11 +65,11 @@ public class TestBase {
 		init();
 	}
 
-	private  static  void init() throws Exception {
+	private  static  void init()  {
 		//// 自动快速地使用缺省Log4j环境
 		BasicConfigurator.configure();
 		log.info("==================start init ...");
-//		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
+		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
 		clientUrl = ConfigUtils.getConfig("client.url");
 		log.info ("clientUrl");
 		serverUrlArray=ConfigUtils.getConfig("server.url").split(",");

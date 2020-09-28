@@ -35,7 +35,7 @@ public class ConfigUtils {
 			config = builder.getConfiguration();
 
 		} catch (ConfigurationException cex) {
-			// loading of the configuration file failed
+			log.error("ConfigUtils的getConfig throw error");
 		}
 		return config;
 	}
