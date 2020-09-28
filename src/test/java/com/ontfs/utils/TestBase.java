@@ -70,8 +70,9 @@ public class TestBase {
 		BasicConfigurator.configure();
 		log.info("==================start init ...");
 		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
+		log.info ("configFilePath"+configFilePath);
 		clientUrl = ConfigUtils.getConfig("client.url");
-		log.info ("clientUrl");
+//		log.info ("clientUrl"+clientUrl);
 		serverUrlArray=ConfigUtils.getConfig("server.url").split(",");
 
 		uploadFilePath = ConfigUtils.getConfig("uploadfile.path");
