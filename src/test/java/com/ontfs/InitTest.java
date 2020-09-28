@@ -12,11 +12,9 @@ public class InitTest extends TestBase {
 	@Test
 	public void initEnvironment() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		try {
+
 		super.init();
-		} catch (Exception e) {
-			log.error("InitTest initEnvironment 抛出异常:",e);
-		}
+
 	}
 
 	@BeforeSuite
