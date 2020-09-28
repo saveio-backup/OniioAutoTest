@@ -2,8 +2,7 @@ package com.ontfs.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
@@ -35,7 +34,7 @@ public class ConfigUtils {
 			config = builder.getConfiguration();
 
 		} catch (ConfigurationException cex) {
-			log.error("ConfigUtils的getConfig throw error",cex);
+		log.error("ConfigUtils的getConfig throw error",cex);
 		}
 		return config;
 	}

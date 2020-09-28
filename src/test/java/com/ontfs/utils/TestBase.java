@@ -70,7 +70,7 @@ public class TestBase {
 		BasicConfigurator.configure();
 		log.info("==================start init ...");
 //        clientUrl = ConfigUtils.getConfig("client.url");
-		log.info ("clientUrl0"+clientUrl);
+		log.info ("CONFIGFILE="+ConfigUtils.CONFIGFILE);
         log.info ("clientUrl"+ConfigUtils.getConfig("client.url"));
 		clientUrl = ConfigUtils.getConfig("client.url");
 		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
