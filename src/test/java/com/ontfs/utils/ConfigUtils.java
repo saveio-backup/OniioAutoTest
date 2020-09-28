@@ -19,8 +19,8 @@ import org.apache.log4j.Logger;
 
 public class ConfigUtils {
 	private static Logger log = Logger.getLogger(ConfigUtils.class);
-	private static String ROOT_PATH = getRootPath();
-	private final static String CONFIGFILE = "config.properties";
+	public static String ROOT_PATH = getRootPath();
+	public final static String CONFIGFILE = "config.properties";
 	public static String CONFIG_FILE_PATH = ROOT_PATH + "src/test/resources/";
 	private static File configFile = new File(CONFIG_FILE_PATH + CONFIGFILE);
 	private static String FILE_PATH = ROOT_PATH + "files/";

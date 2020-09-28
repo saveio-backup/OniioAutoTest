@@ -18,12 +18,11 @@ public class InitTest extends TestBase {
 
 	@BeforeSuite
 	public void beforeSuite(){
-		log.info("this is " + this.getClass().getName() + ",and the current method is beforeTest");
-		log.info("*************************this is beforeSuite ");
+		log.info("this is " + this.getClass().getName() );
 		try {
 			super.setUp();
 		} catch (Exception e) {
-			log.info("InitTest 的beforeSuite 抛出异常:",e);
+			log.error("InitTest 的beforeSuite 抛出异常:",e);
 		}
 		
 
