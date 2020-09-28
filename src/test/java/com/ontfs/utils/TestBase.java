@@ -69,10 +69,10 @@ public class TestBase {
 		//// 自动快速地使用缺省Log4j环境
 		BasicConfigurator.configure();
 		log.info("==================start init ...");
-		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
+//		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
 		clientUrl = ConfigUtils.getConfig("client.url");
 		serverUrlArray=ConfigUtils.getConfig("server.url").split(",");
-
+        log.info ("执行");
 		uploadFilePath = ConfigUtils.getConfig("uploadfile.path");
 		wallet = ConfigUtils.getConfig("client.address");
 		wallet2 = ConfigUtils.getConfig("client2.address");
