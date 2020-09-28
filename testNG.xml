@@ -60,9 +60,8 @@
     </test>
     <test name="bodyParams">
         <classes>
-         <class name="com.ontfs.bodyParams.file.UploadFileTest">
+         <class name="com.ontfs.bodyParams.file.UploadFileTest"/>
 
-            </class>
             <class name="com.ontfs.bodyParams.file.DownloadFileTest"></class>
             <class name="com.ontfs.bodyParams.file.DecryptFileTest"></class>
             <class name="com.ontfs.bodyParams.file.RenewFileTest"></class>
@@ -83,7 +82,7 @@
             <class
                     name="com.ontfs.bodyParams.task.GetDownloadTaskByTaskIdTest"></class>
             <class name="com.ontfs.bodyParams.task.DeleteTaskTest"></class>
-            <class name="com.ontfs.bodyParams.sector.CreateSectorTest"></class>-->
+            <class name="com.ontfs.bodyParams.sector.CreateSectorTest"></class>
             <class name="com.ontfs.bodyParams.sector.DeleteSectorTest"></class>
         </classes>
     </test>
