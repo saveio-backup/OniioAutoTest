@@ -19,7 +19,7 @@ public class InitTest extends TestBase {
 	@BeforeSuite
 	public void beforeSuite(){
 		log.info("this is " + this.getClass().getName() + ",and the current method is beforeTest");
-		System.out.println("*************************this is BeforeTest ");
+		log.info("*************************this is beforeSuite ");
 		try {
 			super.setUp();
 		} catch (Exception e) {

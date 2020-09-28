@@ -65,7 +65,7 @@ public class TestBase {
 		init();
 	}
 
-	private void init() throws Exception {
+	private  static  void init() throws Exception {
 		//// 自动快速地使用缺省Log4j环境
 		BasicConfigurator.configure();
 		log.info("==================start init ...");
