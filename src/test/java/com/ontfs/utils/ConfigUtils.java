@@ -53,7 +53,7 @@ public class ConfigUtils {
 	 * get attribute of config.properties
 	 */
 	public static String getConfig(String key) {
-		log.info("=========The current method is getConfig");
+//		log.info("=========The current method is getConfig");
 		return config.getString(key);
 	}
 
@@ -61,7 +61,7 @@ public class ConfigUtils {
 	 * get location such as : D:/eclipse-workspace/AutoTestSave/
 	 */
 	public static String getRootPath() {
-        log.info("=========The current method is getRootPath");
+//        log.info("=========The current method is getRootPath");
 		String prefix = "file:/";
 		String suffix = "com/ontfs/utils/ConfigUtils.class";
 		String path = ConfigUtils.class.getResource("ConfigUtils.class").toString();
