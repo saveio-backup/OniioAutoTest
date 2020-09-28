@@ -61,11 +61,11 @@ public class TestBase {
 		super();
 	}
 
-	public void setUp() throws Exception {
+/*	public void setUp() {
 		init();
-	}
+	}*/
 
-	private void init()  {
+	public  void init()  {
 		//// 自动快速地使用缺省Log4j环境
 		BasicConfigurator.configure();
 		log.info("==================start init ...");

@@ -10,18 +10,19 @@ import org.testng.annotations.BeforeSuite;
 public class InitTest extends TestBase {
 	
 	@Test
-	public void init() {
-		log.info("api test start init ...");
+	public void initEnvironment() {
+		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		try {
+		super.init();
+		} catch (Exception e) {
+			log.error("InitTest initEnvironment 抛出异常:",e);
+		}
 	}
 
 	@BeforeSuite
 	public void beforeSuite(){
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		try {
-			super.setUp();
-		} catch (Exception e) {
-			log.error("InitTest 的beforeSuite 抛出异常:",e);
-		}
+
 		
 
 	}
