@@ -65,14 +65,15 @@ public class TestBase {
 		init();
 	}
 
-	private  void init()  {
+	public  void init()  {
 		//// 自动快速地使用缺省Log4j环境
 		BasicConfigurator.configure();
 		log.info("==================start init ...");
+        clientUrl = ConfigUtils.getConfig("client.url");
+        log.info ("clientUrl"+clientUrl);
 		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
 		log.info ("configFilePath"+configFilePath);
-		clientUrl = ConfigUtils.getConfig("client.url");
-//		log.info ("clientUrl"+clientUrl);
+
 		serverUrlArray=ConfigUtils.getConfig("server.url").split(",");
 
 		uploadFilePath = ConfigUtils.getConfig("uploadfile.path");
