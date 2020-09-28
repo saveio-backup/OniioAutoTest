@@ -11,14 +11,12 @@ public class InitTest extends TestBase {
 	
 	@Test
 	public void init() {
-		System.out.println(
-				"==============================this is " + this.getClass().getName() + "============================");
 		log.info("api test start init ...");
 	}
 
 	@BeforeSuite
 	public void beforeSuite(){
-		log.info("this is " + this.getClass().getName() );
+		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		try {
 			super.setUp();
 		} catch (Exception e) {
