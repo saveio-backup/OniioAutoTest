@@ -61,6 +61,7 @@ public class ConfigUtils {
 	 * get location such as : D:/eclipse-workspace/AutoTestSave/
 	 */
 	public static String getRootPath() {
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String prefix = "file:/";
 		String suffix = "com/ontfs/utils/ConfigUtils.class";
 		String path = ConfigUtils.class.getResource("ConfigUtils.class").toString();
