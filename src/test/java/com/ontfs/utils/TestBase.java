@@ -67,7 +67,7 @@ public class TestBase {
 
 	public static void init()  {
 		//// 自动快速地使用缺省Log4j环境
-		BasicConfigurator.configure();
+//		BasicConfigurator.configure();
 		log.info("==================start init ...");
 //        clientUrl = ConfigUtils.getConfig("client.url");
 		log.info ("CONFIGFILE="+ConfigUtils.CONFIGFILE);

@@ -53,7 +53,7 @@ public class ConfigUtils {
 	 * get attribute of config.properties
 	 */
 	public static String getConfig(String key) {
-		log.info("=========The current method is getConfig");
+		System.out.println("=========The current method is getConfig");
 		return config.getString(key);
 	}
 
