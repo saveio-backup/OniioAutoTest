@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterClass;
 
 public class GetFileInfoTEst extends TestBase {
-	@Test
+	@Test(groups  ="scenario")
 	public void testGetFileInfoAfterDeleteFile() {
 		// upload file
 		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);

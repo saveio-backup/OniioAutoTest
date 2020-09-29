@@ -19,7 +19,7 @@ import org.testng.annotations.AfterClass;
 
 public class UploadFileTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testUploadSpaceFileWhenNoSpace() {
 		// upload space File
 //		File file=new File(uploadFilePath+"/"+getFilesName()[0][0]);
@@ -28,7 +28,7 @@ public class UploadFileTest extends TestBase {
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 	}
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testUploadFileSizeGreaterThanSpaceVolume() {
 		//create space
 		JSONObject object=SpaceUtils.createSpace(clientUrl, 256, copyNum, pdpInterval, expiredTime);

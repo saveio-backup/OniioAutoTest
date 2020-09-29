@@ -16,7 +16,7 @@ public class GetDownloadTaskByTaskIdTest extends TestBase {
 
 	private Object[] invalidTaskId = ConstantUtil.invalidTaskId;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testGetDownloadTaskByTaskIdWithInvalidTaskId() {
 		for (int i = 0; i < invalidTaskId.length; i++) {
 			JSONObject object=TaskUtils.getDownloadTaskinfoByTaskId(clientUrl, invalidTaskId[i]);

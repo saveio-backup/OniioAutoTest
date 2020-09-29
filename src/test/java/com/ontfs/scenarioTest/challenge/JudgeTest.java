@@ -17,7 +17,7 @@ import org.testng.annotations.AfterClass;
 
 public class JudgeTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testJudgeWhenNoChallenge() {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -36,7 +36,7 @@ public class JudgeTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testJudgeWhenChallengeNoReply() {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -64,7 +64,7 @@ public class JudgeTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testJudgeWhenTheFileWasDeleted() {
 		
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());

@@ -15,7 +15,7 @@ import org.testng.annotations.AfterClass;
 public class GetNodeListTest extends TestBase {
 	private Object[] invalidLimit = ConstantUtil.invalidLimit;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testGetNodeListWithInvalidLimit() {
 		for (int i = 0; i < invalidLimit.length; i++) {
 			JSONObject object = NodeUtils.getNodeList(clientUrl, invalidLimit[i]);

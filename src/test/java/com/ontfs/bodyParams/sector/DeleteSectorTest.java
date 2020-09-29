@@ -18,7 +18,7 @@ public class DeleteSectorTest extends TestBase {
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.EXECUTE_ERROR);
     }
 
-    @Test
+    @Test(groups = "unusual")
     private void testDeleteSectorWhenExistFile() {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
@@ -35,7 +35,7 @@ public class DeleteSectorTest extends TestBase {
     }
 
 
-    @Test(enabled = false)
+    @Test(enabled = false,groups = "unusual")
     private void testDeleteSectorWhenDeleteFile() {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 

@@ -29,7 +29,7 @@ public class UploadFileTest extends TestBase {
 
     private Object[] validStorageType = ConstantUtil.validStorageType;
 
-    @Test(dataProvider = "invaidStringFilePath", dataProviderClass = DataProviderUtils.class)
+    @Test(dataProvider = "invaidStringFilePath", dataProviderClass = DataProviderUtils.class,groups = "unusual")
     public void testUploadFileWithFilePathIsWrong(String filePath) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + " filepath是" + filePath);
@@ -39,7 +39,7 @@ public class UploadFileTest extends TestBase {
         verifyUploadFileError(object);
     }
 
-    @Test(dataProvider = "invalidNumber", dataProviderClass = DataProviderUtils.class)
+    @Test(dataProvider = "invalidNumber", dataProviderClass = DataProviderUtils.class,groups = "unusual")
     public void testUploadFileWithFilePathTypeIsWrong(Object filePath) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
                 + " filepath是" + filePath);
@@ -48,7 +48,7 @@ public class UploadFileTest extends TestBase {
         verifyUploadFileError(object);
     }
 
-    @Test(dataProvider = "descIsNull", dataProviderClass = DataProviderUtils.class)
+    @Test(dataProvider = "descIsNull", dataProviderClass = DataProviderUtils.class,groups = "unusual")
     public void testUploadFileWithInvalidDesc(Object desc) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 
@@ -63,7 +63,7 @@ public class UploadFileTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(groups = "normal")
     public void testUploadFileWithDescIsChinese() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject object = FileUtils.uploadFile(clientUrl, uploadFilePath + "/wallet.dat", "花花", pwd, expiredTime,
@@ -81,7 +81,7 @@ public class UploadFileTest extends TestBase {
 
     }
 
-    @Test
+    @Test(groups = "unusual")
     public void testUploadFileWithInvaildExpiredTime() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i = 0; i < invalidExpiredTime.length; i++) {
@@ -93,7 +93,7 @@ public class UploadFileTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(groups = "unusual")
     public void testUploadFileWithInvaildCopyNum() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i = 0; i < invalidCopynum.length; i++) {
@@ -103,7 +103,7 @@ public class UploadFileTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(groups = "unusual")
     public void testUploadFileWithValidCopyNum() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i = 0; i < validCopyNum.length; i++) {
@@ -118,7 +118,7 @@ public class UploadFileTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(groups = "unusual")
     public void testUploadFileWithInvaildStorageType() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i = 0; i < invalidStorageType.length; i++) {
@@ -128,7 +128,7 @@ public class UploadFileTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(groups = "normal")
     private void testUploadFileWithVaildStorageType() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         //create sapce
@@ -147,7 +147,7 @@ public class UploadFileTest extends TestBase {
         }
     }
 
-    @Test(dataProvider = "invalidProveLevel", dataProviderClass = SectorDataProvider.class)
+    @Test(dataProvider = "invalidProveLevel", dataProviderClass = SectorDataProvider.class,groups = "unusual")
     private void testUploadFileWithInvalidProveLevel(Object invalidProveLevel) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         //upload file
@@ -156,8 +156,9 @@ public class UploadFileTest extends TestBase {
         verifyUploadFileError(object);
     }
 
-    @Test
+    @Test(groups = "normal")
     private void testUploadFileToDifferentLevelOfTheSameNode() {
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
         //create sector
         JSONObject object = SectorUtils.createSector(serverUrlArray[0], "22", "1G", 2);
@@ -177,8 +178,9 @@ public class UploadFileTest extends TestBase {
     /**
      * test upload files to same level sector of the same node
      */
-    @Test
+    @Test(groups = "normal")
     private void testUploadFilesToSameLevelOfThSameNode() {
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
         //create sector
         JSONObject object = SectorUtils.createSector(serverUrlArray[0], "222", "1G", 2);
@@ -195,21 +197,22 @@ public class UploadFileTest extends TestBase {
     /**
      * test upload file to same sector of different node
      */
-    @Test
+    @Test(groups = "normal")
     private void testUploadFilesToSameSectorOfDifferentNode() {
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
         //create sector
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "10", "1G", 1);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
         //create sector
-        JSONObject object1 = SectorUtils.createSector(serverUrlArray[1], "1", "1G", 1);
+        JSONObject object1 = SectorUtils.createSector(serverUrlArray[1], "10", "1G", 1);
         Assert.assertEquals(CommonUtils.getError(object1), ConstantUtil.SUCCESS_CODE);
 
         String fileHash = FileUtils.getFileHashByUploadFile(1, 1);
-        boolean result1 = SectorUtils.verifyNodeContainFile(serverUrlArray[0], serverAddressArray[0], fileHash, 2);
-        boolean result2 = SectorUtils.verifyNodeContainFile(serverUrlArray[1], serverAddressArray[1], fileHash, 2);
+        boolean result1 = SectorUtils.verifyNodeContainFile(serverUrlArray[0], serverAddressArray[0], fileHash, 1);
+        boolean result2 = SectorUtils.verifyNodeContainFile(serverUrlArray[1], serverAddressArray[1], fileHash, 1);
 
         Assert.assertTrue(result1 || result2);
 
@@ -218,8 +221,9 @@ public class UploadFileTest extends TestBase {
     /**
      * test upload file to different sector of different node
      */
-    @Test
+    @Test(groups = "normal")
     private  void  testUploadFileToDifferentSectorOfDifferentNode(){
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
         //create sector
@@ -237,8 +241,9 @@ public class UploadFileTest extends TestBase {
 
     }
 
-    @Test
+    @Test(groups = "unusual")
     private void testUploadFileToNoExistSector(){
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
         JSONObject object = FileUtils.uploadFile(clientUrl, uploadFilePath + "/wallet.dat", "wallet.dat", pwd,
                 expiredTime, copyNum, true, 1, 2);

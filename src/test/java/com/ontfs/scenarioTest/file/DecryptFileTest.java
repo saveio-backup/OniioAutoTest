@@ -19,7 +19,7 @@ import com.ontfs.utils.TestBase;
 
 public class DecryptFileTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testTwoDecryptFileWithSameName() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String downloadPath = FileUtils.getDownloadFilePathAfterDownloadFileSuccessfully(pwd);
@@ -35,7 +35,7 @@ public class DecryptFileTest extends TestBase {
 
 	}
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testDecrypUnencryptedFilesWithPwd() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String downloadPath=FileUtils.getDownloadFilePathAfterDownloadFileSuccessfully();
@@ -43,7 +43,7 @@ public class DecryptFileTest extends TestBase {
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 	}
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testDecryAfterDeleteFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// upload file

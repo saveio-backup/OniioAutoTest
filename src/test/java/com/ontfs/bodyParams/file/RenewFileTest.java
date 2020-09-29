@@ -19,7 +19,7 @@ public class RenewFileTest extends TestBase {
 	private Object[] invalidFileHash =ConstantUtil.invalidFileHash;
 	private Object[] invalidTime = ConstantUtil.invalidTime;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testRenewFileWithInvalidTime() {
 		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
 		for (int i = 0; i < invalidTime.length; i++) {

@@ -13,7 +13,7 @@ import com.ontfs.utils.TestBase;
 
 public class GetSpaceTest extends TestBase{
 	
-  @Test
+  @Test(groups  ="scenario")
   public void testGetSpaceWhenNoSpace() {
 	 JSONObject object=SpaceUtils.getSpaceInfo(clientUrl);
 	 Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);

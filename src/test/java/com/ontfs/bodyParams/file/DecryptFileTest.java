@@ -70,20 +70,7 @@ public class DecryptFileTest extends TestBase {
 
 
 
-	@Test(groups = "unusual")
-	public void testTwoDecryptFileWithSameName() {
-		String downloadPath = FileUtils.getDownloadFilePathAfterDownloadFileSuccessfully(pwd);
-		String decryptPath = decryFileDirectory + "/" + System.currentTimeMillis();
-		// first decrypt
-		JSONObject object = FileUtils.decryptFile(clientUrl, downloadPath, decryptPath, pwd);
-		Assert.assertEquals(CommonUtils.getDesc(object), ConstantUtil.SUCCESS);
-		AssertJUnit.assertEquals(CommonUtils.getError(object).toString(), ConstantUtil.SUCCESS_CODE);
-		//second decrypt
-		
-		JSONObject object2 = FileUtils.decryptFile(clientUrl, downloadPath, decryptPath, pwd);
-		Assert.assertEquals(CommonUtils.getError(object2), ConstantUtil.INTERNAL_ERROR);
 
-	}
 	
 	@Test(groups = "unusual")
 	public void testDecrypUnencryptedFilesWithPwd() {

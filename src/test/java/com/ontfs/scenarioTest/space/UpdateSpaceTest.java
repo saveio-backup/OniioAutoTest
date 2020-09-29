@@ -15,7 +15,7 @@ import org.testng.annotations.AfterClass;
 
 public class UpdateSpaceTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testUpdateSpaceWhenSpaceNONExists() {
 
 		// update space
@@ -23,7 +23,7 @@ public class UpdateSpaceTest extends TestBase {
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testUpdateSpaceLessThanTheUsedSpace() {
 		// create space
 		JSONObject object = SpaceUtils.createSpace(clientUrl, volume, copyNum, pdpInterval, expiredTime);

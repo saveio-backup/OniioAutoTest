@@ -21,7 +21,7 @@ public class ChallengeTest extends TestBase {
 	/**
 	 * Challenge nodes that don't store files
 	 */
-	@Test
+	@Test(groups  ="scenario")
 	public void testChallengeNodeThatNoStoreFile() {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -65,7 +65,7 @@ public class ChallengeTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testChallengeNodeWithUploadFaileFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// upload failed file
@@ -103,7 +103,7 @@ public class ChallengeTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testSecondChallengeWhenFirstChallengeNoReply() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
@@ -130,7 +130,7 @@ public class ChallengeTest extends TestBase {
 		}
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = false,groups  ="scenario")
 	public void testDeleteFileWhenChallengeNoReply() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// Upload file success

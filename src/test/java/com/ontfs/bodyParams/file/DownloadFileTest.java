@@ -17,7 +17,7 @@ public class DownloadFileTest extends TestBase {
 	private Object[] invalidOutPath = ConstantUtil.invalidOutPath;
 	private Object[] invalidDecryptPwd = ConstantUtil.invalidPwd;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testDownloadFileWithInvaildFileHash() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		for (int i = 0; i < invalidFileHash.length; i++) {
@@ -28,7 +28,7 @@ public class DownloadFileTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups = "unusual")
 	public void testDownloadFileWithInvalidOutPath() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);
@@ -39,7 +39,7 @@ public class DownloadFileTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups = "unusual")
 	public void testDownloadFileWithInvalidPwd() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash = FileUtils.getFileHashByUploadFile(1,1,pwd);

@@ -20,7 +20,7 @@ import org.testng.annotations.AfterClass;
 public class DeleteFilesTest extends TestBase {
 	private Object[] invalidFileHash = ConstantUtil.invalidFileHash;
 
-	@Test(enabled = false)
+	@Test(enabled = false,groups = "unusual")
 	public void testDeleteFilesWithFileHashIsWrong() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 
@@ -37,7 +37,7 @@ public class DeleteFilesTest extends TestBase {
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = false,groups = "unusual")
 	public void testDeleteFilesWithInvalidParams() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			for (int j = 0; j < invalidFileHash.length; j++) {

@@ -16,7 +16,7 @@ public class DeleteTaskTest extends TestBase {
 
 	private Object[] invalidTaskId = ConstantUtil.invalidTaskId;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testDeleteTaskWithInvalidTaskId() {
 		for (int i = 0; i < invalidTaskId.length; i++) {
 			JSONObject object = TaskUtils.deleteTask(clientUrl, invalidTaskId[i]);

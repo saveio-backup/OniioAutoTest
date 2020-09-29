@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class CreateSectorTest extends TestBase {
 
-    @Test(dataProvider = "invalidSectorId", dataProviderClass = SectorDataProvider.class)
+    @Test(dataProvider = "invalidSectorId", dataProviderClass = SectorDataProvider.class,groups = "unusual")
     public void testCreateSectorWithInvalidSectorId(Object invalidSectorId) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject object = SectorUtils.createSector(serverUrlArray[0], invalidSectorId, "3G", 1);
@@ -25,7 +25,7 @@ public class CreateSectorTest extends TestBase {
         }
     }
 
-    @Test(dataProvider = "invalidProveLevel", dataProviderClass = SectorDataProvider.class)
+    @Test(dataProvider = "invalidProveLevel", dataProviderClass = SectorDataProvider.class,groups = "unusual")
     public void testCreateSectorWithInvalidProveLevel(Object invalidProveLevel) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject object = SectorUtils.createSector(serverUrlArray[0], "12", "3G", invalidProveLevel);
@@ -37,7 +37,7 @@ public class CreateSectorTest extends TestBase {
         }
     }
 
-    @Test(dataProvider = "invalidSectorSize", dataProviderClass = SectorDataProvider.class)
+    @Test(dataProvider = "invalidSectorSize", dataProviderClass = SectorDataProvider.class,groups = "unusual")
     public void testCreateSectorWithInvalidSectorSize(Object invalidSectorSize) {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject object = SectorUtils.createSector(serverUrlArray[0], "22", invalidSectorSize, 1);
@@ -52,7 +52,7 @@ public class CreateSectorTest extends TestBase {
     /**
      * Use the same ID twice
      */
-    @Test
+    @Test(groups = "unusual")
    public void testCreateSectorWhenUseTheSameSectorIdTwice(){
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         //first create sector
@@ -65,7 +65,7 @@ public class CreateSectorTest extends TestBase {
     /**
      * Use the different ID twice
      */
-    @Test
+    @Test(groups = "normal")
     public void testCreateSectorWhenUseTheDifferentSectorIdTwice(){
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         //first create sector

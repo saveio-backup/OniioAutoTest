@@ -17,7 +17,7 @@ import org.testng.annotations.AfterClass;
 
 public class ChangeOwnerTest extends TestBase {
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testChangeOwnerForSpaceFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// create space
@@ -33,7 +33,7 @@ public class ChangeOwnerTest extends TestBase {
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testChangeOwnerWithOriginalOwner() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		String fileHash=FileUtils.getFileHashByUploadFile(1,1, pwd);
@@ -44,7 +44,7 @@ public class ChangeOwnerTest extends TestBase {
 		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = false,groups ="scenario")
 	public void testChangeOwnerForFailedFileUpload() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		//upload file fail

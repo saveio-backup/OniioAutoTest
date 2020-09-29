@@ -17,7 +17,7 @@ public class GetFileInfoTest extends TestBase {
 
 	private Object[] invalidFileHash =ConstantUtil.invalidFileHash;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testGetFileInfoWithInvalidFileHash() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			JSONObject object = FileUtils.getFileInfo(clientUrl, invalidFileHash[i]);
@@ -30,7 +30,7 @@ public class GetFileInfoTest extends TestBase {
 
 	}
 	
-	@Test
+	@Test(groups = "normal")
 	public void testGetFileInfoAfterDeleteFile() {
 		String fileHash=FileUtils.getFileHashByUploadFile(1,1, pwd);
 		JSONObject object=FileUtils.getFileInfo(clientUrl, fileHash);

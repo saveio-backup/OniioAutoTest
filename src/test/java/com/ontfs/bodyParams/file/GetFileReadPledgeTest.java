@@ -14,7 +14,7 @@ public class GetFileReadPledgeTest extends TestBase {
 
 	private Object[] invalidFileHash = ConstantUtil.invalidFileHash;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testGetFileReadPledgeWithInvalidFileHash() {
 		for (int i = 0; i < invalidFileHash.length; i++) {
 			JSONObject object = FileUtils.getFileReadPledge(clientUrl, invalidFileHash[i]);

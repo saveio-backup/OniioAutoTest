@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 
 public class CreateSpaceTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testCreateSpaceWhenSpaceExists() {
 		// firstly,create space
 		JSONObject object = SpaceUtils.createSpace(clientUrl, volume, copyNum, pdpInterval, expiredTime);

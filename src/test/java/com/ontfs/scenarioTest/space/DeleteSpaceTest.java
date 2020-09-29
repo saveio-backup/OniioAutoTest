@@ -18,13 +18,13 @@ import org.testng.annotations.AfterClass;
 
 public class DeleteSpaceTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testDeleteSpaceWhenNoSpace() {
 		JSONObject object = SpaceUtils.deleteSpace(clientUrl);
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.INTERNAL_ERROR);
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testDeleteSpaceWhenExitNotExpiredFile() {
 		// create space
 	

@@ -15,7 +15,7 @@ import com.ontfs.utils.TestBase;
 
 public class getReadPledgeTest extends TestBase {
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testGetPledgeWithNoDownloadFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// Upload file
@@ -26,7 +26,7 @@ public class getReadPledgeTest extends TestBase {
 
 	}
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testGetPledgeAfterDeleteFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// Upload file

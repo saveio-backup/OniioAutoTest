@@ -16,7 +16,7 @@ import org.testng.annotations.AfterClass;
 
 public class DeleteFilesTest extends TestBase {
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testDeleteFilesWithOneInvalidFiles() {
 		// upload file
 		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
@@ -33,7 +33,7 @@ public class DeleteFilesTest extends TestBase {
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = false,groups  ="scenario")
 	public void testDeleteTheSameFileTwice() {
 		String fileHash = FileUtils.getFileHashByUploadFile(1, 1,pwd);
 		// first delete

@@ -16,7 +16,7 @@ public class GetUploadTaskByTaskIdTest extends TestBase {
 
 	private Object[] invalidTaskId = ConstantUtil.invalidTaskId;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testGetUploadTaskByTaskIdWithInvalidTaskId() {
 		for (int i = 0; i < invalidTaskId.length; i++) {
 			JSONObject object=TaskUtils.getUploadTaskInfoByTaskId(clientUrl, invalidTaskId[i]);

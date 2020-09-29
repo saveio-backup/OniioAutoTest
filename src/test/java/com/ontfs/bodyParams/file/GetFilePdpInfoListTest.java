@@ -14,7 +14,7 @@ public class GetFilePdpInfoListTest extends TestBase {
 
     private Object[] invalidFileHash = ConstantUtil.invalidFileHash;
 
-    @Test
+    @Test(groups = "unusual")
     public void testGetPdpListWithInvalidFileHash() {
         for (int i = 0; i < invalidFileHash.length; i++) {
             JSONObject object = FileUtils.getPdpinfoList(clientUrl, invalidFileHash[i]);

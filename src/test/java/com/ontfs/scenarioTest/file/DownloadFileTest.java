@@ -16,7 +16,7 @@ import org.testng.annotations.AfterClass;
 
 public class DownloadFileTest extends TestBase{
  
-	@Test
+	@Test(groups  ="scenario")
 	public void testDownloadNonEncrptedFileWithEncrypt() {
 		String fileHash = FileUtils.getFileHashByUploadFile(1,1);
 		JSONObject object = FileUtils.downloadFile(clientUrl, fileHash, inorder, maxPeerCnt,
@@ -31,7 +31,7 @@ public class DownloadFileTest extends TestBase{
 		Assert.assertTrue(task.TaskBaseInfo.ErrorInfo.contains("no fs nodes avaiable when ask for download"));
 	}
 
-	@Test
+	@Test(groups  ="scenario")
 	public void testTwoDownloadWithSameFileName() {
 		String fileHash = FileUtils.getFileHashByUploadFile(1,1);
 		//first download

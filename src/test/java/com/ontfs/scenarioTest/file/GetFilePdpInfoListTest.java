@@ -17,7 +17,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 
 public class GetFilePdpInfoListTest extends TestBase{
-  @Test
+  @Test(groups  ="scenario")
   public void testGetPdpListAfterDeleteFile() {
 	  
 	  log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());

@@ -15,7 +15,7 @@ import org.testng.annotations.AfterClass;
 
 public class RenewFileTest extends TestBase {
 	
-	@Test
+	@Test(groups  ="scenario")
 	public void testRenewFileForSpaceFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// create space
@@ -30,7 +30,7 @@ public class RenewFileTest extends TestBase {
 
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = false,groups  ="scenario")
 	public void testRenewFileThatUploadFailed() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		// upload failed file

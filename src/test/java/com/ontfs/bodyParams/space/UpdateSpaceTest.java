@@ -17,7 +17,7 @@ public class UpdateSpaceTest extends TestBase {
 	private Object[] invalidSpaceVolume = ConstantUtil.invalidSpaceVolume;
 	private Object[] invalidExpiredTime = ConstantUtil.invalidExpiredTime_space;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testUpdateSpaceWithInvalidVolume() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		for (int i = 0; i < invalidSpaceVolume.length; i++) {
@@ -30,7 +30,7 @@ public class UpdateSpaceTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "unusual")
 	public void testUpdateSpaceWithInvalidExpiredTime() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		for (int i = 0; i < invalidExpiredTime.length; i++) {

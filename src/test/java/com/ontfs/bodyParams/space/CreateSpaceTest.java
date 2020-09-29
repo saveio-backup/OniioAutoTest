@@ -20,7 +20,7 @@ public class CreateSpaceTest extends TestBase {
 	private Object[] invalidCopyNum = ConstantUtil.invalidCopyNum;
 	private Object[] invalidExpiredTime = ConstantUtil.invalidExpiredTime_space;
 
-	@Test
+	@Test(groups = "unusual")
 	public void testCreateSpaceWithInvalidSpaceVolume() {
 		for (int i = 0; i < invalidSpaceVolume.length; i++) {
 			JSONObject object = SpaceUtils.createSpace(clientUrl, invalidSpaceVolume[i], copyNum, pdpInterval,
@@ -33,7 +33,7 @@ public class CreateSpaceTest extends TestBase {
 		}
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = false,groups = "unusual")
 	public void testCreateSpaceWithInvalidCopyNum() {
 		for (int i = 0; i < invalidCopyNum.length; i++) {
 			JSONObject object = SpaceUtils.createSpace(clientUrl, volume, invalidCopyNum[i], pdpInterval, expiredTime);
@@ -45,7 +45,7 @@ public class CreateSpaceTest extends TestBase {
 		}
 	}
 
-	@Test
+	@Test(groups = "unusual")
 	public void testCreateSpaceWithInvalidExpiredTime() {
 		for (int i = 0; i < invalidExpiredTime.length; i++) {
 			JSONObject object = SpaceUtils.createSpace(clientUrl, volume, copyNum, pdpInterval, invalidExpiredTime[i]);
