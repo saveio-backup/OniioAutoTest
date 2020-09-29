@@ -23,6 +23,7 @@ public class FileBatchOperationTest extends TestBase {
 
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName()
 				+ "and current fileName is :" + fileName);
+		log.info("uploadFilePath="+uploadFilePath);
 		String filePath = uploadFilePath + "/" + fileName;
 //		log.info("filePath is :" + filePath);
 //		File file = new File(filePath);
