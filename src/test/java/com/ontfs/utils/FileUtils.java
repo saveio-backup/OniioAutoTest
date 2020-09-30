@@ -121,8 +121,9 @@ public class FileUtils extends TestBase {
      * @return
      */
     public static Boolean verifyUploadSuccess(String url, String taskId) {
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject object = TaskUtils.getUploadTaskInfoByTaskId(url, taskId);
-
+        Assert.assertEquals(CommonUtils.getDesc(object),ConstantUtil.SUCCESS);
         Assert.assertEquals(CommonUtils.getError(object).toString(), ConstantUtil.SUCCESS_CODE);
         int status = (Integer) ((JSONObject) (((JSONObject) object.get(ConstantUtil.RESULT))
                 .get(ConstantUtil.TASK_BASE_INFO))).get(ConstantUtil.STATUS);

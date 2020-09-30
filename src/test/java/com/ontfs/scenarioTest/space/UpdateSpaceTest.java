@@ -58,6 +58,6 @@ public class UpdateSpaceTest extends TestBase {
 	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		SectorUtils.createSectorBeforeUploadFiles();
+		SectorUtils.createSectorBeforeUploadFiles(1);
 	}
 }

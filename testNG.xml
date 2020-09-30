@@ -28,7 +28,7 @@
                 <methods>
                     <include name="testBatchUploadFiles"/>
                     <include name="testSectorFileOrder"/>
-                    <include name="testBatchGetFileInfo"/>
+                  <include name="testBatchGetFileInfo"/>
                     <include name="testBatchDownloadFiles"/>
                     <include name="testBatchDecryptFiles"/>
                     <include name="verifyDecryFileByMD5"/>
@@ -37,7 +37,7 @@
                     <include name="testChangeFileOwner"/>
                 </methods>
             </class>
-        <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
+       <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
                 <methods>
                     <include name="createSpace"></include>
                     <include name="getSpace"></include>

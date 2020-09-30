@@ -91,7 +91,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
-		SectorUtils.createSectorBeforeUploadFiles();
+		SectorUtils.createSectorBeforeUploadFiles(1);
 	}
 
 	@AfterClass(alwaysRun = true)

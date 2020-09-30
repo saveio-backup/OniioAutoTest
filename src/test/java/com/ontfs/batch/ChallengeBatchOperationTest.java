@@ -282,7 +282,7 @@ public class ChallengeBatchOperationTest extends TestBase {
 	@BeforeClass(alwaysRun = true)
 	public static void BeforeClass() {
 		deleteFileAndTaskAndSpace(clientUrl);
-		SectorUtils.createSectorBeforeUploadFiles();
+		SectorUtils.createSectorBeforeUploadFiles(1);
 
 	}
 

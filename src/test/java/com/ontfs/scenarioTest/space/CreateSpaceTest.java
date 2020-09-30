@@ -35,7 +35,7 @@ public class CreateSpaceTest extends TestBase {
 
 	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
-		SectorUtils.createSectorBeforeUploadFiles();
+		SectorUtils.createSectorBeforeUploadFiles(1);
 	}
 	@AfterClass
 	public void afterClass() {

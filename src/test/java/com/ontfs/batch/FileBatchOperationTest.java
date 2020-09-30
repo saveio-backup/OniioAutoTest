@@ -118,7 +118,7 @@ public class FileBatchOperationTest extends TestBase {
 	@DataProvider(name = "getDecryptFile", parallel = true)
 	private Object[][] getDecryptFile() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-
+        log.info("downloadFileDirectory="+downloadFileDirectory);
 		File filePath = new File(downloadFileDirectory);
 
 		if (filePath.isDirectory()) {
@@ -198,7 +198,7 @@ public class FileBatchOperationTest extends TestBase {
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
-		SectorUtils.createSectorBeforeUploadFiles();
+		SectorUtils.createSectorBeforeUploadFiles(1);
 
 	}
 
@@ -206,6 +206,7 @@ public class FileBatchOperationTest extends TestBase {
 	public static void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
+
 	}
 
 }

@@ -110,20 +110,37 @@ public class SectorUtils extends TestBase {
      *
      * @return
      */
-    public static void createSectorBeforeUploadFiles() {
-        //getsector
-        JSONObject sector = getSectorInfo(serverUrlArray[0], "1");
-        // Assert.assertEquals(CommonUtils.getError(sector), ConstantUtil.SUCCESS_CODE);
-        if (CommonUtils.getResult(sector) == null) {
-            JSONObject object = createSector(serverUrlArray[0], "1", "3G", 1);
+    public static void createSectorBeforeUploadFiles(int proveLevel) {
+        log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        for (int i = 0; i < serverUrlArray.length; i++) {
+            //get sector for node
+            JSONObject sectors = getSectorInfosForNode(serverUrlArray[i], serverAddressArray[i]);
+            Assert.assertEquals(CommonUtils.getError(sectors), ConstantUtil.SUCCESS_CODE);
+            int count = CommonUtils.getResult(sectors).getIntValue("SectorCount");
+            if (count > 0) {
+                JSONArray sectorArray = CommonUtils.getResult(sectors).getJSONArray("SectorInfos");
+                for (int j = 0; j < sectorArray.size(); j++) {
+                     if(sectorArray.getJSONObject(j).getIntValue("ProveLevel")==proveLevel){
+                        return;
+                     }
+                }
+
+            }
+            //delete file
+            deleteFileAndTaskAndSpace(clientUrl);
+            //delete sector
+            deleteAllSector(serverAddressArray,serverUrlArray);
+            //create sector
+            JSONObject object = createSector(serverUrlArray[0], "111111", "3G", proveLevel);
             Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
             //verify getsector
-            JSONObject sectorObject = getSectorInfo(serverUrlArray[0], "1");
+            JSONObject sectorObject = getSectorInfo(serverUrlArray[0], "111111");
             Assert.assertEquals(CommonUtils.getError(sectorObject), ConstantUtil.SUCCESS_CODE);
             Assert.assertTrue(CommonUtils.getResult(sectorObject) != null);
         }
     }
+
 
     public static void deleteAllSector(String[] serverAddress, String[] serverUrl) {
         for (int i = 0; i < serverUrl.length; i++) {
@@ -213,12 +230,13 @@ public class SectorUtils extends TestBase {
                 JSONObject getLocalSectorObject = getLocalSector(serverUrlArray[i], sectorId);
                 Assert.assertEquals(CommonUtils.getError(getLocalSectorObject), ConstantUtil.SUCCESS_CODE);
                 JSONArray fileLsit2 = CommonUtils.getResult(getLocalSectorObject).getJSONArray("FileList");
-
-                for (int k = 0; k < fileList1.size(); k++) {
-                  String filehash1=  fileList1.getString(k);
-                  String filhash2=fileLsit2.getJSONObject(k).getString("FileHash");
-                    if ( !filehash1.equals(filhash2) ) {
-                        return false;
+                if (fileList1 != null) {
+                    for (int k = 0; k < fileList1.size(); k++) {
+                        String filehash1 = fileList1.getString(k);
+                        String filhash2 = fileLsit2.getJSONObject(k).getString("FileHash");
+                        if (!filehash1.equals(filhash2)) {
+                            return false;
+                        }
                     }
                 }
             }

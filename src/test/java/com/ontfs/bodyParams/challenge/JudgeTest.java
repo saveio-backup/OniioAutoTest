@@ -69,6 +69,6 @@ public class JudgeTest extends TestBase{
 	}
 	@BeforeClass(alwaysRun = true)
 	public void beforeClass(){
-		SectorUtils.createSectorBeforeUploadFiles();
+		SectorUtils.createSectorBeforeUploadFiles(1);
 	}
 }

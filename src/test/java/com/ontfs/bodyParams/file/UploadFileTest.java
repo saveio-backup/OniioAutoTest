@@ -282,7 +282,7 @@ public class UploadFileTest extends TestBase {
     public static void beforeMethod() {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         deleteFileAndTaskAndSpace(clientUrl);
-        SectorUtils.createSectorBeforeUploadFiles();
+        SectorUtils.createSectorBeforeUploadFiles(1);
     }
 
     @AfterClass
