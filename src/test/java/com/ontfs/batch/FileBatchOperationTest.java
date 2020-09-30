@@ -43,6 +43,7 @@ public class FileBatchOperationTest extends TestBase {
 
 	@Test (groups = "normal")
 	public void testSectorFileOrder() {
+		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		//Verify file order in sector
 		Assert.assertTrue(SectorUtils.verifySectorFileOrder(serverUrlArray, serverAddressArray));
 	}

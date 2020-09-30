@@ -131,6 +131,7 @@ public class FileUtils extends TestBase {
         if (status == ConstantUtil.STATTASK_FINISH && progress == ConstantUtil.UPLOAD_DONE) {
             return true;
         } else if (progress == ConstantUtil.UPLOAD_ERROR) {
+            log.error("上传失败："+taskId);
             return false;
 
         } else {
