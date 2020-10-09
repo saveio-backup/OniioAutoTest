@@ -26,18 +26,18 @@
         <classes>
             <class name="com.ontfs.batch.FileBatchOperationTest">
                 <methods>
-                    <include name="testBatchUploadFiles"/>
-                    <include name="testSectorFileOrder"/>
-                  <include name="testBatchGetFileInfo"/>
-                    <include name="testBatchDownloadFiles"/>
+                <!--   <include name="testBatchUploadFiles"/>-->
+                  <!--  <include name="testSectorFileOrder"/>
+                  <include name="testBatchGetFileInfo"/>-->
+                   <!-- <include name="testBatchDownloadFiles"/>-->
                     <include name="testBatchDecryptFiles"/>
                     <include name="verifyDecryFileByMD5"/>
-                    <include name="testBatchReadPledge"/>
+                    <!--<include name="testBatchReadPledge"/>
                     <include name="testBatchRenewFiles"/>
-                    <include name="testChangeFileOwner"/>
+                    <include name="testChangeFileOwner"/>-->
                 </methods>
             </class>
-       <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
+    <!--   <class name="com.ontfs.batch.SpaceFileBatchOperationTest">
                 <methods>
                     <include name="createSpace"></include>
                     <include name="getSpace"></include>
@@ -55,10 +55,10 @@
                     <include name="testBatchJudge"/>
 
                 </methods>
-            </class>
+            </class>-->
         </classes>
     </test>
-    <test name="bodyParams">
+    <!--<test name="bodyParams">
         <classes>
          <class name="com.ontfs.bodyParams.file.UploadFileTest"/>
 
@@ -104,5 +104,5 @@
             <class name="com.ontfs.scenarioTest.challenge.ChallengeTest"></class>
             <class name="com.ontfs.scenarioTest.challenge.JudgeTest"></class>
         </classes>
-    </test>
+    </test>-->
 </suite> <!-- Suite -->

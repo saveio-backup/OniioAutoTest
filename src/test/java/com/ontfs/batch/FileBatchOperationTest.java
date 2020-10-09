@@ -120,7 +120,8 @@ public class FileBatchOperationTest extends TestBase {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("downloadFileDirectory="+downloadFileDirectory);
 		File filePath = new File(downloadFileDirectory);
-
+       log.info("filePath.isDirectory()="+filePath.isDirectory());
+       log.info("filePath="+filePath);
 		if (filePath.isDirectory()) {
 			File[] files = filePath.listFiles();
 			Object[][] objArray = new Object[files.length][1];
@@ -194,19 +195,19 @@ public class FileBatchOperationTest extends TestBase {
 
 	}
 
-	@BeforeClass(alwaysRun = true)
+/*	@BeforeClass(alwaysRun = true)
 	public static void beforeClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 		SectorUtils.createSectorBeforeUploadFiles(1);
 
-	}
+	}*/
 
-	@AfterClass(alwaysRun = true)
+/*	@AfterClass(alwaysRun = true)
 	public static void afterClass() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		deleteFileAndTaskAndSpace(clientUrl);
 
-	}
+	}*/
 
 }
