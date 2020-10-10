@@ -19,7 +19,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 	@Test
 	public void createSpace() {
 		log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		JSONObject object = SpaceUtils.createSpace(clientUrl, volume, copyNum, pdpInterval, expiredTime);
+		JSONObject object = SpaceUtils.createSpace(clientUrl, volume, 3, pdpInterval, expiredTime);
 		Assert.assertEquals(CommonUtils.getDesc(object), ConstantUtil.SUCCESS);
 		Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 		// Calculate space cost
@@ -41,7 +41,7 @@ public class SpaceFileBatchOperationTest extends TestBase {
 		String filePath = uploadFilePath + "/" + fileName;
 //		log.info("filePath is :" + filePath);
 //		File file = new File(filePath);
-		JSONObject object = FileUtils.uploadFile(clientUrl, filePath,  new Date().getTime() + "-" +fileName,pwd, expiredTime, copyNum, true, 0,1);
+		JSONObject object = FileUtils.uploadFile(clientUrl, filePath,  new Date().getTime() + "-" +fileName,pwd, expiredTime, 3, true, 0,1);
 		//
 		String taskId = ((JSONObject) object.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
 		// verify upload file success

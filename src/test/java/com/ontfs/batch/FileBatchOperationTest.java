@@ -27,7 +27,7 @@ public class FileBatchOperationTest extends TestBase {
         String filePath = uploadFilePath + "/" + fileName;
 //		log.info("filePath is :" + filePath);
 //		File file = new File(filePath);
-        JSONObject obj = FileUtils.uploadFile(clientUrl, filePath, new Date().getTime() + "-" + fileName, pwd, expiredTime, copyNum, true, 1, 1);
+        JSONObject obj = FileUtils.uploadFile(clientUrl, filePath, new Date().getTime() + "-" + fileName, pwd, expiredTime, 3, true, 1, 1);
         Assert.assertEquals(CommonUtils.getDesc(obj), ConstantUtil.SUCCESS);
         AssertJUnit.assertEquals(CommonUtils.getError(obj).toString(), ConstantUtil.SUCCESS_CODE);
         String taskId = ((JSONObject) obj.get(ConstantUtil.RESULT)).get(ConstantUtil.TASK_ID).toString();
