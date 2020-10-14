@@ -161,10 +161,10 @@ public class UploadFileTest extends TestBase {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
         //create sector
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "22", "1G", 2);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "22", "1G", 2,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
-        JSONObject object1 = SectorUtils.createSector(serverUrlArray[0], "33", "1G", 3);
+        JSONObject object1 = SectorUtils.createSector(serverUrlArray[0], "33", "1G", 3,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object1), ConstantUtil.SUCCESS_CODE);
 
         String fileHash = FileUtils.getFileHashByUploadFile(1, 2);
@@ -183,11 +183,11 @@ public class UploadFileTest extends TestBase {
         log.info("=========The current method is " + Thread.currentThread().getStackTrace()[1].getMethodName());
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
         //create sector
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "222", "1G", 2);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "222", "1G", 2,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
         //create sector
-        JSONObject object1 = SectorUtils.createSector(serverUrlArray[0], "2222", "1G", 2);
+        JSONObject object1 = SectorUtils.createSector(serverUrlArray[0], "2222", "1G", 2,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object1), ConstantUtil.SUCCESS_CODE);
 
         String fileHash = FileUtils.getFileHashByUploadFile(1, 2);
@@ -203,11 +203,11 @@ public class UploadFileTest extends TestBase {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
         //create sector
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "10", "1G", 1);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "10", "1G", 1,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
         //create sector
-        JSONObject object1 = SectorUtils.createSector(serverUrlArray[1], "10", "1G", 1);
+        JSONObject object1 = SectorUtils.createSector(serverUrlArray[1], "10", "1G", 1,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object1), ConstantUtil.SUCCESS_CODE);
 
         String fileHash = FileUtils.getFileHashByUploadFile(1, 1);
@@ -227,11 +227,11 @@ public class UploadFileTest extends TestBase {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
         //create sector
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
         //create sector
-        JSONObject object1 = SectorUtils.createSector(serverUrlArray[1], "2", "1G", 2);
+        JSONObject object1 = SectorUtils.createSector(serverUrlArray[1], "2", "1G", 2,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object1), ConstantUtil.SUCCESS_CODE);
 
         String fileHash = FileUtils.getFileHashByUploadFile(1, 1);

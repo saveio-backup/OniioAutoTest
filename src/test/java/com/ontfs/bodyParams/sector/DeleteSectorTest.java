@@ -14,7 +14,7 @@ public class DeleteSectorTest extends TestBase {
     @Test
     private void testDeleteSectorWhenSectorNoExist() {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
-        JSONObject object = SectorUtils.deleteSector(serverUrlArray[0], "2");
+        JSONObject object = SectorUtils.deleteSector(serverUrlArray[0], "2",sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.EXECUTE_ERROR);
     }
 
@@ -23,13 +23,13 @@ public class DeleteSectorTest extends TestBase {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
         //create sectoe
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
         //upload file
         String fileHash = FileUtils.getFileHashByUploadFile(1, 1);
         Assert.assertTrue(SectorUtils.verifyNodeContainFile(serverUrlArray[0], serverAddressArray[0], fileHash, 1));
-        JSONObject deleteSector = SectorUtils.deleteSector(serverUrlArray[0], "1");
+        JSONObject deleteSector = SectorUtils.deleteSector(serverUrlArray[0], "1",sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(deleteSector), ConstantUtil.EXECUTE_ERROR);
 
     }
@@ -40,7 +40,7 @@ public class DeleteSectorTest extends TestBase {
         SectorUtils.deleteAllSector(serverAddressArray, serverUrlArray);
 
         //create sectoe
-        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1);
+        JSONObject object = SectorUtils.createSector(serverUrlArray[0], "1", "1G", 1,sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
         //upload file
@@ -50,7 +50,7 @@ public class DeleteSectorTest extends TestBase {
         JSONObject object1 = FileUtils.deleteFiles(clientUrl, fileHash);
         Assert.assertEquals(CommonUtils.getError(object1), ConstantUtil.SUCCESS_CODE);
         //delete sector
-        JSONObject deleteSector = SectorUtils.deleteSector(serverUrlArray[0], "1");
+        JSONObject deleteSector = SectorUtils.deleteSector(serverUrlArray[0], "1",sha256Pwd);
         Assert.assertEquals(CommonUtils.getError(deleteSector), ConstantUtil.EXECUTE_ERROR);
 
     }

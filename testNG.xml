@@ -58,7 +58,7 @@
             </class>
         </classes>
     </test>
-  <test name="bodyParams">
+ <!-- <test name="bodyParams">
         <classes>
          <class name="com.ontfs.bodyParams.file.UploadFileTest"/>
 
@@ -85,8 +85,8 @@
             <class name="com.ontfs.bodyParams.sector.CreateSectorTest"></class>
             <class name="com.ontfs.bodyParams.sector.DeleteSectorTest"></class>
         </classes>
-    </test>
-  <test name="scenarioTest">
+    </test>-->
+  <!--<test name="scenarioTest">
         <classes>
             <class name="com.ontfs.scenarioTest.space.UpdateSpaceTest"></class>
             <class name="com.ontfs.scenarioTest.space.CreateSpaceTest"></class>
@@ -104,5 +104,5 @@
             <class name="com.ontfs.scenarioTest.challenge.ChallengeTest"></class>
             <class name="com.ontfs.scenarioTest.challenge.JudgeTest"></class>
         </classes>
-    </test>
+    </test>-->
 </suite> <!-- Suite -->

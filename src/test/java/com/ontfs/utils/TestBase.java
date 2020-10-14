@@ -47,6 +47,7 @@ public class TestBase {
 	protected static int gasLimit = 0;
 	protected static int gasPrice = 0;
 	protected static double challengeReward;
+	protected  static String sha256Pwd="";
 
 	protected static String fileUrl = "";
 	protected static String uploadFileUrl = "";
@@ -69,12 +70,12 @@ public class TestBase {
 		//// 自动快速地使用缺省Log4j环境
 //		BasicConfigurator.configure();
 		log.info("==================start init ...");
-//        clientUrl = ConfigUtils.getConfig("client.url");
+
 		log.info ("CONFIGFILE="+ConfigUtils.CONFIGFILE);
         log.info ("clientUrl"+ConfigUtils.getConfig("client.url"));
 		clientUrl = ConfigUtils.getConfig("client.url");
 		String configFilePath = ConfigUtils.CONFIG_FILE_PATH;
-		log.info ("configFilePath"+configFilePath);
+		sha256Pwd=ConfigUtils.getConfig("sha256Pwd");
 
 		serverUrlArray=ConfigUtils.getConfig("server.url").split(",");
 

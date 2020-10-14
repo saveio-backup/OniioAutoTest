@@ -17,8 +17,8 @@ public class SectorUtils extends TestBase {
      * @param proveLevel
      * @return
      */
-    public static JSONObject createSector(String serverUrl, Object sectorId, Object sectorSize, Object proveLevel) {
-        String bodyParams = CommonUtils.getBodyParams(ConstantUtil.CREATE_SECTOR, sectorId, proveLevel, sectorSize);
+    public static JSONObject createSector(String serverUrl, Object sectorId, Object sectorSize, Object proveLevel,Object pwd) {
+        String bodyParams = CommonUtils.getBodyParams(ConstantUtil.CREATE_SECTOR, sectorId, proveLevel, sectorSize,pwd);
         log.info("createSector bodyParams is :" + bodyParams);
         JSONObject object = null;
         try {
@@ -36,8 +36,8 @@ public class SectorUtils extends TestBase {
      * @param sectorId
      * @return
      */
-    public static JSONObject deleteSector(String serverUrl, Object sectorId) {
-        String bodyParams = CommonUtils.getBodyParams(ConstantUtil.DELETE_SECTOR, sectorId);
+    public static JSONObject deleteSector(String serverUrl, Object sectorId,Object pwd) {
+        String bodyParams = CommonUtils.getBodyParams(ConstantUtil.DELETE_SECTOR, sectorId,pwd);
         log.info("deleteSector bodyParams is :" + bodyParams);
         JSONObject object = null;
         try {
@@ -131,7 +131,7 @@ public class SectorUtils extends TestBase {
             //delete sector
             deleteAllSector(serverAddressArray,serverUrlArray);
             //create sector
-            JSONObject object = createSector(serverUrlArray[0], "111111", "3G", proveLevel);
+            JSONObject object = createSector(serverUrlArray[0], "111111", "3G", proveLevel,sha256Pwd);
             Assert.assertEquals(CommonUtils.getError(object), ConstantUtil.SUCCESS_CODE);
 
             //verify getsector
@@ -152,7 +152,7 @@ public class SectorUtils extends TestBase {
                 JSONArray sectorArray = CommonUtils.getResult(sectors).getJSONArray("SectorInfos");
                 for (int j = 0; j < sectorArray.size(); j++) {
                     //delete sector
-                    JSONObject delete = deleteSector(serverUrl[i], sectorArray.getJSONObject(j).getString("SectorID"));
+                    JSONObject delete = deleteSector(serverUrl[i], sectorArray.getJSONObject(j).getString("SectorID"),sha256Pwd);
 //                    Assert.assertEquals(CommonUtils.getError(delete), ConstantUtil.SUCCESS_CODE);
                 }
             }
@@ -174,7 +174,7 @@ public class SectorUtils extends TestBase {
         JSONObject sectorObject = getSectorInfo(serverUrl, sectorId);
         Assert.assertEquals(CommonUtils.getError(sectorObject), ConstantUtil.SUCCESS_CODE);
         JSONObject sectorInfo = CommonUtils.getResult(sectorObject);
-        if (sectorInfo.getJSONArray("FileList").contains(fileHash)) {
+        if (sectorInfo.get("FileList")!=null) {
             return true;
         }
         return false;
