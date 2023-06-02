@@ -1,18 +1,14 @@
 package com.ontfs.bodyParams.space;
 
-import org.testng.annotations.Test;
-
 import com.alibaba.fastjson.JSONObject;
 import com.ontfs.utils.CommonUtils;
 import com.ontfs.utils.ConstantUtil;
 import com.ontfs.utils.SpaceUtils;
 import com.ontfs.utils.TestBase;
-
-import org.testng.annotations.BeforeMethod;
-import org.omg.CORBA.DynAnyPackage.Invalid;
-import org.omg.CORBA.DynAnyPackage.Invalid;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class CreateSpaceTest extends TestBase {
 
